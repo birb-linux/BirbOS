@@ -46,6 +46,10 @@ fi
 prog_line "Cloning the birb package manager"
 git clone https://github.com/Toasterbirb/birb $BIRB_SRC_DIR
 
+
+prog_line "Downloading package tarballs"
+$BIRB_SRC_DIR/birb --download man-pages iana-etc
+
 # The package manager installation will be finished
 # in the chroot environment to avoid polluting the installation
 # with the host distro

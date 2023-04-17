@@ -25,6 +25,7 @@ export CHROOT_SECTION="temp_tools"
 ~/bootstrap-scripts/chroot-temptools/python3.sh
 ~/bootstrap-scripts/chroot-temptools/texinfo.sh
 ~/bootstrap-scripts/chroot-temptools/util_linux.sh
+~/bootstrap-scripts/chroot-temptools/stow.sh
 
 prog_line "Do some cleanup! This is to remove unnecessary files and save space"
 
@@ -44,3 +45,6 @@ cd $BIRB_SRC_ROOT
 make clean
 make
 make install
+
+prog_line "Installing the rest of the system packages with birb"
+birb man-pages
