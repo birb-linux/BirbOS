@@ -3,11 +3,9 @@
 [ "$2" == "DEV_MODE" ] && DEV_MODE="enabled" && echo "Developer mode is enabled! All warnings will be skipped. Please be careful..."
 read -p "Hit ENTER to continue ʕ •ᴥ•ʔ"
 
-prog_line()
-{
-	printf "> $1\n"
-}
+source ./installer-funcs.sh
 
+# Make sure that we are running as root
 [ "$(whoami)" != "root" ] && echo "This script needs to be run as the root user" && exit 1
 
 [ -z "$1" ] && echo -e "You need to provide a path to the bootstrap configuration file.\nCheck the documentation for more information" && exit 1

@@ -7,10 +7,19 @@
 
 set -e
 
-cd $LFS/sources
-
 TARBALL="$(echo $1 | cut -d';' -f1 | xargs basename)"
 DIR_NAME="$(echo $TARBALL | sed 's/\.tar\.xz//; s/\.tar\.gz//')"
 
-echo "Deleting $DIR_NAME..."
-rm -rf $LFS/sources/$DIR_NAME
+# We need to run different commands when in the chroot environment
+if [ "$CHROOT_SECTION" == "temp_tools" ]
+then
+	cd /sources
+
+	echo "Deleting $DIR_NAME..."
+	rm -rf /sources/$DIR_NAME
+else
+	cd $LFS/sources
+
+	echo "Deleting $DIR_NAME..."
+	rm -rf $LFS/sources/$DIR_NAME
+fi
