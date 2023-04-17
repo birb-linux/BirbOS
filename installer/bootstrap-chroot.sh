@@ -43,11 +43,14 @@ else
   mount -t tmpfs -o nosuid,nodev tmpfs $LFS/dev/shm
 fi
 
+prog_line "Starting the birb package manager setup"
+./birb-setup.sh
+
 prog_line "Entering the chroot environment"
 echo "To continue with the installation in the chroot environment, run the 'chroot-install.sh' script located at the root directory"
 chroot "$LFS" /usr/bin/env -i   \
     HOME=/root                  \
     TERM="$TERM"                \
-    PS1='(lfs chroot) \u:\w\$ ' \
+    PS1='(BirbOS chroot) \u:\w\$ ' \
     PATH=/usr/bin:/usr/sbin     \
     /bin/bash --login

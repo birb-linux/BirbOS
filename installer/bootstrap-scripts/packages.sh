@@ -42,3 +42,9 @@ grub_upstream_fixes_patch="https://www.linuxfromscratch.org/patches/lfs/developm
 kbd_backspace_delete_fix_patch="https://www.linuxfromscratch.org/patches/lfs/development/kbd-2.5.1-backspace-1.patch;f75cca16a38da6caa7d52151f7136895"
 readline_upstream_fix_patch="https://www.linuxfromscratch.org/patches/lfs/development/readline-8.2-upstream_fix-1.patch;dd1764b84cfca6b677f44978218a75da"
 sysvinit_consolidated_patch="https://www.linuxfromscratch.org/patches/lfs/development/sysvinit-3.06-consolidated-1.patch;17ffccbb8e18c39e8cedc32046f3a475"
+
+# Some extra packages needed to finish the installation
+#curl="https://curl.se/download/curl-7.88.1.tar.xz;8bea0c58428578f397471fe209fad6ab"
+#gnutls="https://www.gnupg.org/ftp/gcrypt/gnutls/v3.8/gnutls-3.8.0.tar.xz;20a662caf20112b6b9ad1f4a64db3a97"
+#nettle="https://ftp.gnu.org/gnu/nettle/nettle-3.8.1.tar.gz;e15c5fd5cc901f5dde6a271d7f2320d1"
+#pkg_config="https://pkg-config.freedesktop.org/releases/pkg-config-0.29.2.tar.gz;f6e931e319531b736fadc017f470e68a"

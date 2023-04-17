@@ -37,3 +37,10 @@ find /usr/lib{,x}32 -name \*.la -delete
 
 # Remove the tools directory, because its not needed anymore
 rm -rf /tools
+
+prog_line "Compiling and installing birb ♪┏(・o･)┛♪"
+BIRB_SRC_ROOT="/var/cache/distfiles/birb"
+cd $BIRB_SRC_ROOT
+make clean
+make
+make install
