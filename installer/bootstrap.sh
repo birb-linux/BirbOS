@@ -102,7 +102,7 @@ mkdir -pv $LFS/lib64
 # 32-bit stuff
 mkdir -pv $LFS/usr/lib{,x}32
 ln -sv usr/lib32 $LFS/lib32
-ln -sv usr/libx32 $LFS/libx32
+#ln -sv usr/libx32 $LFS/libx32
 
 # Create the temporary tools directory for cross-compiling
 mkdir -pv $LFS/tools
@@ -114,7 +114,7 @@ useradd -s /bin/bash -g lfs -m -k /dev/null lfs
 prog_line "Giving the LFS user permissions to the $LFS directories"
 chown -v lfs $LFS/{usr{,/*},lib,var,etc,bin,sbin,tools}
 chown -v lfs $LFS/lib64
-chown -v lfs $LFS/{lib32,libx32}
+#chown -v lfs $LFS/{lib32,libx32}
 
 prog_line "Copying all of the installation scripts into /home/lfs"
 cp -vr ./bootstrap-scripts /home/lfs/

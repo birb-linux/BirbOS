@@ -38,7 +38,8 @@ rm -rf /usr/share/{info,man,doc}/*
 
 # Get rid of .la files, because they could cause issues with BLFS packages
 find /usr/{lib,libexec} -name \*.la -delete
-find /usr/lib{,x}32 -name \*.la -delete
+find /usr/lib32 -name \*.la -delete
+#find /usr/lib{,x}32 -name \*.la -delete
 
 # Remove the tools directory, because its not needed anymore
 rm -rf /tools
@@ -54,4 +55,4 @@ make install
 
 prog_line "Installing the rest of the system packages with birb"
 # TODO: Add gcc here later when all dependencies have been packaged
-birb man-pages iana-etc vim zlib bzip2 xz zstd file ncurses readline m4 #gmp mpfr
+birb man-pages iana-etc vim zlib bzip2 xz zstd file ncurses readline m4 gmp mpfr

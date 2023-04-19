@@ -24,7 +24,7 @@ sed -e '/m64=/s/lib64/lib/' \
 mkdir -v build
 cd       build
 
-mlist=m64,m32,mx32
+mlist=m64,m32
 ../configure                  \
     --target=$LFS_TGT                              \
     --prefix=$LFS/tools                            \

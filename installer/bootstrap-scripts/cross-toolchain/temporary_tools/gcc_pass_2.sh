@@ -26,7 +26,7 @@ sed '/thread_header =/s/@.*@/gthr-posix.h/' \
 mkdir -v build
 cd       build
 
-mlist=m64,m32,mx32
+mlist=m64,m32
 ../configure                                       \
     --build=$(../config.guess)                     \
     --host=$LFS_TGT                                \

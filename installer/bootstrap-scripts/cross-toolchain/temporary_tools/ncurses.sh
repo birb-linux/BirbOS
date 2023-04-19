@@ -63,30 +63,6 @@ ln -s libncursesw.so DESTDIR/usr/lib32/libcursesw.so
 cp -Rv DESTDIR/usr/lib32/* $LFS/usr/lib32
 rm -rf DESTDIR
 
-# Building the x32bit version
-make distclean
-
-CC="$LFS_TGT-gcc -mx32"             \
-CXX="$LFS_TGT-g++ -mx32"            \
-./configure --prefix=/usr           \
-            --host=$LFS_TGTX32      \
-            --build=$(./config.guess)    \
-            --libdir=/usr/libx32    \
-            --mandir=/usr/share/man \
-            --with-shared           \
-            --without-normal        \
-            --with-cxx-shared       \
-            --without-debug         \
-            --without-ada           \
-            --disable-stripping     \
-            --enable-widec
-
-make -j$(nproc)
-
-make DESTDIR=$PWD/DESTDIR TIC_PATH=$(pwd)/build/progs/tic install
-ln -s libncursesw.so DESTDIR/usr/libx32/libcursesw.so
-cp -Rv DESTDIR/usr/libx32/* $LFS/usr/libx32
-rm -rf DESTDIR
 
 ~/bootstrap-scripts/remove_sources.sh $PACKAGE
 ~/bootstrap-scripts/installation_progress_manager.sh add $0

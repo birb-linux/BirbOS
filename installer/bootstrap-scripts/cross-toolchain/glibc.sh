@@ -74,36 +74,6 @@ $LFS_TGT-gcc -m32 dummy.c
 readelf -l a.out | grep '/ld-linux' | grep '[Requesting program interpreter: /lib/ld-linux.so.2]'
 rm -v dummy.c a.out
 
-# Build x32bit support
-make clean
-find .. -name "*.a" -delete
-
-CC="$LFS_TGT-gcc -mx32" \
-CXX="$LFS_TGT-g++ -mx32" \
-../configure                             \
-      --prefix=/usr                      \
-      --host=$LFS_TGTX32                 \
-      --build=$(../scripts/config.guess) \
-      --enable-kernel=3.2                \
-      --with-headers=$LFS/usr/include    \
-      --enable-multi-arch                \
-      --libdir=/usr/libx32               \
-      --libexecdir=/usr/libx32           \
-      libc_cv_slibdir=/usr/libx32
-
-make -j$(nproc)
-
-make DESTDIR=$PWD/DESTDIR install
-cp -a DESTDIR/usr/libx32 $LFS/usr/
-install -vm644 DESTDIR/usr/include/gnu/{lib-names,stubs}-x32.h \
-               $LFS/usr/include/gnu/
-ln -svf ../libx32/ld-linux-x32.so.2 $LFS/lib/ld-linux-x32.so.2
-
-# Perform a sanity check
-echo 'int main(){}' > dummy.c
-$LFS_TGT-gcc -mx32 dummy.c
-readelf -l a.out | grep '/ld-linux-x32' | grep '[Requesting program interpreter: /libx32/ld-linux-x32.so.2]'
-rm -v dummy.c a.out
 
 ~/bootstrap-scripts/remove_sources.sh $PACKAGE
 ~/bootstrap-scripts/installation_progress_manager.sh add $0

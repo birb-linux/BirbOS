@@ -53,30 +53,6 @@ make DESTDIR=$PWD/DESTDIR install
 cp -Rv DESTDIR/usr/lib32/* /usr/lib32
 rm -rf DESTDIR
 
-# Install x32bit version
-make distclean
-
-CC="gcc -mx32" \
-./configure ADJTIME_PATH=/var/lib/hwclock/adjtime    \
-            --libdir=/usr/libx32 \
-            --host=x86_64-pc-linux-gnux32 \
-            --docdir=/usr/share/doc/util-linux-2.38.1 \
-            --disable-chfn-chsh  \
-            --disable-login      \
-            --disable-nologin    \
-            --disable-su         \
-            --disable-setpriv    \
-            --disable-runuser    \
-            --disable-pylibmount \
-            --disable-static     \
-            --without-python     \
-            runstatedir=/run
-
-make -j$(nproc)
-
-make DESTDIR=$PWD/DESTDIR install
-cp -Rv DESTDIR/usr/libx32/* /usr/libx32
-rm -rf DESTDIR
 
 ~/bootstrap-scripts/remove_sources.sh $PACKAGE
 ~/bootstrap-scripts/installation_progress_manager.sh add $0

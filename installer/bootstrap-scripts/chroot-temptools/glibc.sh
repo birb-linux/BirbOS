@@ -161,38 +161,6 @@ gcc -m32 dummy.c
 readelf -l a.out | grep '/ld-linux'
 rm -v dummy.c a.out
 
-# Build the x32bit version
-rm -rf ./*
-find .. -name "*.a" -delete
-
-CC="gcc -mx32" CXX="g++ -mx32" \
-../configure                             \
-      --prefix=/usr                      \
-      --host=x86_64-pc-linux-gnux32      \
-      --build=$(../scripts/config.guess) \
-      --enable-kernel=3.2                \
-      --with-headers=/usr/include        \
-      --enable-multi-arch                \
-      --libdir=/usr/libx32               \
-      --libexecdir=/usr/libx32           \
-      libc_cv_slibdir=/usr/libx32
-
-make -j$(nproc)
-
-make DESTDIR=$PWD/DESTDIR install
-cp -a DESTDIR/usr/libx32/* /usr/libx32/
-install -vm644 DESTDIR/usr/include/gnu/{lib-names,stubs}-x32.h \
-               /usr/include/gnu/
-
-# Add the library name to the dynamic loader config
-echo "/usr/libx32" >> /etc/ld.so.conf
-
-# Test if compiling works
-echo 'int main(){}' > dummy.c
-gcc -mx32 dummy.c
-readelf -l a.out | grep '/ld-linux-x32'
-rm -v dummy.c a.out
-
 
 # Select the timezone
 SELECTED_TIMEZONE="$(tzselect)"
