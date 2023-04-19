@@ -11,7 +11,7 @@ download()
 	FILE_NAME="$(basename $URL)"
 
 	# Check for existing files
-	[ -f "$LFS_SRC_PREFIX/$FILE_NAME" ] && [ "$(md5sum $LFS_SRC_PREFIX/$FILE_NAME | cut -d' ' -f1)" == "$MD5_SUM" ] && echo "$FILE_NAME found" && return
+	[ -f "$LFS_SRC_PREFIX/$FILE_NAME" ] && { [ "$(md5sum $LFS_SRC_PREFIX/$FILE_NAME | cut -d' ' -f1)" == "$MD5_SUM" ] && echo "$FILE_NAME found" && return || rm -fv "$LFS_SRC_PREFIX/$FILE_NAME"; }
 
 	wget --directory-prefix=$LFS_SRC_PREFIX $URL
 

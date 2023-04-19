@@ -48,7 +48,7 @@ git clone https://github.com/Toasterbirb/birb $BIRB_SRC_DIR
 
 
 prog_line "Downloading package tarballs"
-$BIRB_SRC_DIR/birb --download man-pages iana-etc
+$BIRB_SRC_DIR/birb --download man-pages iana-etc vim zlib bzip2 xz zstd file gmp mpfr ncurses readline m4 gcc
 
 # The package manager installation will be finished
 # in the chroot environment to avoid polluting the installation

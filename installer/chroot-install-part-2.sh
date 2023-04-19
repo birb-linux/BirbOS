@@ -39,6 +39,8 @@ find /usr/lib{,x}32 -name \*.la -delete
 # Remove the tools directory, because its not needed anymore
 rm -rf /tools
 
+~/bootstrap-scripts/chroot-temptools/glibc.sh
+
 prog_line "Compiling and installing birb ♪┏(・o･)┛♪"
 BIRB_SRC_ROOT="/var/cache/distfiles/birb"
 cd $BIRB_SRC_ROOT
@@ -47,4 +49,5 @@ make
 make install
 
 prog_line "Installing the rest of the system packages with birb"
-birb man-pages
+# TODO: Add gcc here later when all dependencies have been packaged
+birb man-pages iana-etc vim zlib bzip2 xz zstd file ncurses readline m4 #gmp mpfr

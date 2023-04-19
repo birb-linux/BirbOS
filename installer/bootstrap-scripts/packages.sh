@@ -45,3 +45,4 @@ sysvinit_consolidated_patch="https://www.linuxfromscratch.org/patches/lfs/develo
 
 # Some extra packages needed to finish the installation
 stow="https://ftp.gnu.org/gnu/stow/stow-2.3.1.tar.gz;4dfd82b93bb6702d018b1d57e498a74d"
+tzdata="https://www.iana.org/time-zones/repository/releases/tzdata2023c.tar.gz;5aa672bf129b44dd915f8232de38e49a"
