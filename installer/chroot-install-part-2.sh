@@ -27,6 +27,10 @@ export CHROOT_SECTION="temp_tools"
 ~/bootstrap-scripts/chroot-temptools/util_linux.sh
 ~/bootstrap-scripts/chroot-temptools/stow.sh
 
+# Make sure that stow got installed before continuing
+# Birb won't work properly without it
+file /usr/bin/stow || { echo "Stow seems to be missing... Please make sure that it was compiled correctly and then re-run this script"; exit 1; }
+
 prog_line "Do some cleanup! This is to remove unnecessary files and save space"
 
 # Remove currently installed documentation files
