@@ -30,25 +30,31 @@ touch $LIB_DIR/nest
 
 if [ -d $REPO_DIR ]
 then
-	prog_line "Removing the existing package repository"
-	rm -r $REPO_DIR
+	prog_line "Updating the existing package repository"
+	cd $REPO_DIR
+	git reset --hard
+	git fetch
+	git pull
+else
+	prog_line "Cloning the BirbOS package repository"
+	git clone https://github.com/Toasterbirb/BirbOS-packages $REPO_DIR
 fi
-
-prog_line "Cloning the BirbOS package repository"
-git clone https://github.com/Toasterbirb/BirbOS-packages $REPO_DIR
 
 if [ -d $BIRB_SRC_DIR ]
 then
-	prog_line "Removing the existing birb source files"
-	rm -r $BIRB_SRC_DIR
+	prog_line "Updating the existing birb source files"
+	cd $BIRB_SRC_DIR
+	git reset --hard
+	git fetch
+	git pull
+else
+	prog_line "Cloning the birb package manager"
+	git clone https://github.com/Toasterbirb/birb $BIRB_SRC_DIR
 fi
-
-prog_line "Cloning the birb package manager"
-git clone https://github.com/Toasterbirb/birb $BIRB_SRC_DIR
 
 
 prog_line "Downloading package tarballs"
-$BIRB_SRC_DIR/birb --download man-pages iana-etc vim zlib bzip2 xz zstd file gmp mpfr ncurses readline m4 gcc
+$BIRB_SRC_DIR/birb --download man-pages iana-etc vim zlib bzip2 xz zstd file gmp mpfr ncurses readline m4 bc flex gcc
 
 # The package manager installation will be finished
 # in the chroot environment to avoid polluting the installation

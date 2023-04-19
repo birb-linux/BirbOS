@@ -55,4 +55,4 @@ make install
 
 prog_line "Installing the rest of the system packages with birb"
 # TODO: Add gcc here later when all dependencies have been packaged
-birb man-pages iana-etc vim zlib bzip2 xz zstd file ncurses readline m4 gmp mpfr
+birb man-pages iana-etc vim zlib bzip2 xz zstd file ncurses readline m4 gmp mpfr bc flex
