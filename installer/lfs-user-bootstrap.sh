@@ -3,6 +3,10 @@
 # This script will be run as the LFS user after the account has
 # been created and initialized with the required configuration files
 
+# Make absolutely sure that we are logged in as the lfs user when running this script
+[ "$(whoami)" != "lfs" ] && echo "This script should only be run as the lfs user! Stop what you are doing and read the installation instructions carefully before proceeding" && exit 1
+# TODO: Write those installation instructions
+
 # Compile the cross compiling toolchain
 ./bootstrap-scripts/cross-toolchain/binutils_pass_1.sh
 ./bootstrap-scripts/cross-toolchain/gcc_pass_1.sh
