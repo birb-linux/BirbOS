@@ -25,6 +25,11 @@ chown root:root $LFS/chroot-install.sh
 chown root:root $LFS/chroot-install-part-2.sh
 
 prog_line "Copying all of the temporary tool installation scripts into $LFS/root"
+
+# Make sure that the root directory exists
+mkdir -p $LFS/root
+chown root:root $LFS/root
+
 cp -vr ./bootstrap-scripts $LFS/root/
 chown -v -R root:root $LFS/root/bootstrap-scripts
 
