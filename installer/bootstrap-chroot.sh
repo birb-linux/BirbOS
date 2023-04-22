@@ -57,5 +57,5 @@ chroot "$LFS" /usr/bin/env -i   \
     HOME=/root                  \
     TERM="$TERM"                \
     PS1='(BirbOS chroot) \u:\w\$ ' \
-    PATH=/usr/bin:/usr/sbin     \
+    PATH=/usr/bin:/usr/sbin:/usr/local/bin \
     /bin/bash --login

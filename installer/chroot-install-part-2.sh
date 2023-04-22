@@ -39,10 +39,12 @@ rm -rf /usr/share/{info,man,doc}/*
 # Get rid of .la files, because they could cause issues with BLFS packages
 find /usr/{lib,libexec} -name \*.la -delete
 find /usr/lib32 -name \*.la -delete
-#find /usr/lib{,x}32 -name \*.la -delete
 
 # Remove the tools directory, because its not needed anymore
 rm -rf /tools
+
+# Recreate the documentation directories, so that stow doesn't take over them
+mkdir -pv /usr/share/{info,man/man{1..8},doc}
 
 ~/bootstrap-scripts/chroot-temptools/glibc.sh
 
@@ -54,5 +56,5 @@ make
 make install
 
 prog_line "Installing the rest of the system packages with birb"
-# TODO: Add gcc here later when all dependencies have been packaged
-birb man-pages iana-etc vim zlib bzip2 xz zstd file ncurses readline m4 gmp mpfr bc flex
+birb man-pages iana-etc vim zlib bzip2 xz zstd file pkg-config ncurses readline m4 bc flex tcl expect dejagnu binutils gmp mpfr mpc isl attr acl libcap shadow gcc sed psmisc gettext bison grep bash libtool gdbm gperf expat inetutils less perl stow xml-parser intltool autoconf automake openssl kmod libelf libffi python3 flit-core wheel ninja meson #coreutils
+# TODO: Take a backup before enabling coreutils

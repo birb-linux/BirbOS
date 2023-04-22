@@ -25,6 +25,7 @@ prog_line "Setting up directories and files for the birb package manager"
 mkdir -pv $DB_DIR/fakeroot
 mkdir -pv $CACHE_DIR/distfiles
 mkdir -pv $LIB_DIR
+mkdir -pv /usr/python_dist
 
 touch $LIB_DIR/nest
 
@@ -33,6 +34,7 @@ then
 	prog_line "Updating the existing package repository"
 	cd $REPO_DIR
 	git reset --hard
+	git config pull.rebase true
 	git fetch
 	git pull
 else
@@ -45,6 +47,7 @@ then
 	prog_line "Updating the existing birb source files"
 	cd $BIRB_SRC_DIR
 	git reset --hard
+	git config pull.rebase true
 	git fetch
 	git pull
 else
@@ -54,7 +57,7 @@ fi
 
 
 prog_line "Downloading package tarballs"
-$BIRB_SRC_DIR/birb --download man-pages iana-etc vim zlib bzip2 xz zstd file gmp mpfr ncurses readline m4 bc flex gcc
+$BIRB_SRC_DIR/birb --download man-pages iana-etc vim zlib bzip2 xz zstd file gmp mpfr ncurses readline m4 bc flex tcl expect dejagnu binutils mpc gcc isl attr acl libcap shadow pkg-config sed psmisc gettext bison grep bash libtool gdbm gperf expat inetutils less perl stow xml-parser intltool autoconf automake openssl kmod libelf libffi python3 flit-core wheel ninja meson coreutils
 
 # The package manager installation will be finished
 # in the chroot environment to avoid polluting the installation

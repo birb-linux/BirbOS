@@ -163,8 +163,9 @@ rm -v dummy.c a.out
 
 
 # Select the timezone
-SELECTED_TIMEZONE="$(tzselect)"
-ln -sfv /usr/share/zoneinfo/$SELECTED_TIMEZONE /etc/localtime
+# TODO: Set the timezone later during the installation
+#SELECTED_TIMEZONE="$(tzselect)"
+#ln -sfv /usr/share/zoneinfo/$SELECTED_TIMEZONE /etc/localtime
 
 ~/bootstrap-scripts/remove_sources.sh $PACKAGE
 ~/bootstrap-scripts/installation_progress_manager.sh add $0
