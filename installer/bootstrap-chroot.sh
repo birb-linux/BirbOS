@@ -20,9 +20,9 @@ chown -R root:root $LFS/libx32
 
 prog_line "Copying the chroot-install.sh script to $LFS"
 cp -v ./chroot-install.sh $LFS/
-cp -v ./chroot-install-part-2.sh $LFS/
+cp -v ./chroot-install-part-{2..4}.sh $LFS/
 chown root:root $LFS/chroot-install.sh
-chown root:root $LFS/chroot-install-part-2.sh
+chown root:root $LFS/chroot-install-part-{2..4}.sh
 
 prog_line "Copying all of the temporary tool installation scripts into $LFS/root"
 
@@ -32,6 +32,9 @@ chown root:root $LFS/root
 
 cp -vr ./bootstrap-scripts $LFS/root/
 chown -v -R root:root $LFS/root/bootstrap-scripts
+
+cp -vr ./misc_installation_files $LFS/root/
+chown -v -R root:root $LFS/root
 
 prog_line "Preparing virtual kernel file systems"
 mkdir -pv $LFS/{dev,proc,sys,run}
@@ -48,6 +51,7 @@ else
   mount -t tmpfs -o nosuid,nodev tmpfs $LFS/dev/shm
 fi
 
+
 prog_line "Starting the birb package manager setup"
 ./birb-setup.sh
 
@@ -57,5 +61,5 @@ chroot "$LFS" /usr/bin/env -i   \
     HOME=/root                  \
     TERM="$TERM"                \
     PS1='(BirbOS chroot) \u:\w\$ ' \
-    PATH=/usr/bin:/usr/sbin:/usr/local/bin \
+    PATH=/usr/bin:/usr/sbin:/usr/local/bin:/usr/python_bin \
     /bin/bash --login

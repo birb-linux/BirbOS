@@ -1,1 +1,8 @@
 TARGET_PARTITION="/dev/nvme1n1p4"
+BOOT_PARTITION="/dev/nvme1n1p1"
+
+HOSTNAME="tux"
+DNS_SERVER="9.9.9.9"
+TIME_ZONE="Europe/Helsinki"
+CONSOLE_KEYMAP="fi"
+SYSTEM_LANGUAGE="fi_FI.utf8"

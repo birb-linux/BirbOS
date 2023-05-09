@@ -23,6 +23,9 @@ check_setting()
 	[ -n "${!1}" ] || echo "Setting [$1] wasn't found or was empty"
 }
 check_setting TARGET_PARTITION
+check_setting HOSTNAME
+check_setting DNS_SERVER
+check_setting TIME_ZONE
 
 prog_line "Running a version check"
 VER_RESULT="$(./version-check.sh)"
@@ -82,6 +85,10 @@ then
 else
 	echo "There's something already mounted to $LFS that is not $TARGET_PARTITION! Please unmount it and re-run this script!"
 fi
+
+prog_line "Copy the config file over"
+cp -v $1 $LFS/birb_config
+chown -v root:root $LFS/birb_config
 
 prog_line "Preparing toolchain source files"
 mkdir -pv $LFS/sources

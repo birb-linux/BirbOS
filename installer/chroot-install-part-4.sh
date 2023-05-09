@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# This script is the continuation of the chroot-install-part-3.sh script
+# and should be run after kernel configuration has been done.
+#
+# This script will setup the rest of the base system installation
+# and hopefully make the system bootable
+
+prog_line()
+{
+	printf "> $1\n"
+}
+
+prog_line "Loading installation variables"
+source /birb_config
+
+prog_line "Compiling the kernel"
+cd /usr/src/linux
+make -j$(nproc)
+
+#prog_line "Installing kernel modules"
+#make modules_install
+
+prog_line "Mounting the boot partition"
+mount $BOOT_PARTITION /boot
+
+prog_line "Installing the BirbOS kernel files to /boot"
+KERNEL_VERSION="$(file /usr/src/linux | awk '{print $5}' | xargs basename | cut -d'-' -f2)"
+cp -iv /usr/src/linux/arch/x86/boot/bzImage /boot/vmlinuz-${KERNEL_VERSION}-birbos
+cp -iv /usr/src/linux/System.map /boot/System.map-${KERNEL_VERSION}
+
+prog_line "Finalizing the base installation"
+cat > /etc/lsb-release << "EOF"
+DISTRIB_ID="BirbOS"
+DISTRIB_RELEASE="1.0"
+EOF
+
+cat > /etc/os-release << "EOF"
+NAME="BirbOS"
+VERSION="1.0"
+ID=birbos
+PRETTY_NAME="BirbOS 1.0"
+EOF
+
+echo "Lets setup a password for the root user!"
+passwd
+
+echo ""
+echo "Installation finished!"
+echo "To actually boot into the system, you need to set that up on"
+echo "the host system that you used to install BirbOS"
+echo ""
+echo "This might involve fiddling with GRUB etc."

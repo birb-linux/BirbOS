@@ -10,6 +10,8 @@ prog_line()
 	printf "> $1\n"
 }
 
+cd /
+
 prog_line "Initializing log files"
 touch /var/log/{btmp,lastlog,faillog,wtmp}
 chgrp -v utmp /var/log/lastlog
@@ -56,5 +58,37 @@ make
 make install
 
 prog_line "Installing the rest of the system packages with birb"
-birb man-pages iana-etc vim zlib bzip2 xz zstd file pkg-config ncurses readline m4 bc flex tcl expect dejagnu binutils gmp mpfr mpc isl attr acl libcap shadow gcc sed psmisc gettext bison grep bash libtool gdbm gperf expat inetutils less perl stow xml-parser intltool autoconf automake openssl kmod libelf libffi python3 flit-core wheel ninja meson #coreutils
-# TODO: Take a backup before enabling coreutils
+yes 'n' | birb man-pages iana-etc vim zlib bzip2 xz zstd file pkg-config ncurses readline m4 bc flex tcl expect dejagnu binutils gmp mpfr mpc isl attr acl libcap shadow gcc sed psmisc gettext bison grep bash libtool gdbm gperf expat inetutils less perl stow
+yes 'n' | birb xml-parser
+yes 'n' | birb intltool
+yes 'n' | birb autoconf automake openssl kmod libelf libffi python3 flit-core wheel ninja meson coreutils check diffutils gawk findutils groff popt mandoc icu libtasn1 p11-kit sqlite nspr nss make-ca curl libarchive libuv libxml2 nghttp2 cmake graphite2 wget gzip iproute2 kbd libpipeline make patch tar texinfo eudev man-db procps-ng util-linux e2fsprogs sysklogd sysvinit dash
+
+
+# Handle the freetype2 and harfbuzz chickend/egg issue
+yes | birb freetype
+yes | birb harfbuzz
+yes | birb freetype
+
+## Reinstall graphite2 to add the freetype and harfbuzz functionality into it
+yes | birb graphite2
+
+prog_line "Installing some custom udev rules meant for lfs installations"
+cd /sources
+tar -xf udev-lfs-20171102.tar.xz
+make -f udev-lfs-20171102/Makefile.lfs install
+rm -r udev-lfs-20171102
+
+prog_line "Perform some cleanup"
+rm -rf /tmp/*
+
+# Remove harmful .la files
+find /usr/lib /usr/libexec -name \*.la -delete
+find /usr/lib32 -name \*.la -delete
+find /usr/libx32 -name \*.la -delete
+
+# Remove any partially installed temporary compiler stuff
+find /usr -depth -name $(uname -m)-lfs-linux-gnu\* | xargs rm -rf
+
+# Finish the base of the installation
+cd /
+./chroot-install-part-3.sh

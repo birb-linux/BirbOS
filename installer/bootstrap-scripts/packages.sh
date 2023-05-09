@@ -33,6 +33,7 @@ perl="https://www.cpan.org/src/5.0/perl-5.36.0.tar.xz;826e42da130011699172fd655e
 python3="https://www.python.org/ftp/python/3.11.3/Python-3.11.3.tar.xz;c8d52fc4fb8ad9932a11d86d142ee73a"
 texinfo="https://ftp.gnu.org/gnu/texinfo/texinfo-7.0.3.tar.xz;37bf94fd255729a14d4ea3dda119f81a"
 util_linux="https://www.kernel.org/pub/linux/utils/util-linux/v2.38/util-linux-2.38.1.tar.xz;cd11456f4ddd31f7fbfdd9488c0c0d02"
+udev_lfs="https://anduin.linuxfromscratch.org/LFS/udev-lfs-20171102.tar.xz;27cd82f9a61422e186b9d6759ddf1634"
 
 # Some patches required for LFS
 bzip2_documentation_patch="https://www.linuxfromscratch.org/patches/lfs/development/bzip2-1.0.8-install_docs-1.patch;6a5ac7e89b791aae556de0f745916f7f"
@@ -46,3 +47,4 @@ sysvinit_consolidated_patch="https://www.linuxfromscratch.org/patches/lfs/develo
 # Some extra packages needed to finish the installation
 stow="https://ftp.gnu.org/gnu/stow/stow-2.3.1.tar.gz;4dfd82b93bb6702d018b1d57e498a74d"
 tzdata="https://www.iana.org/time-zones/repository/releases/tzdata2023c.tar.gz;5aa672bf129b44dd915f8232de38e49a"
+lfs_bootscripts="https://www.linuxfromscratch.org/lfs/downloads/development/lfs-bootscripts-20230101.tar.xz;0cee3165c3bdc46a689999ac4fd00b4f"

@@ -26,6 +26,7 @@ mkdir -pv $DB_DIR/fakeroot
 mkdir -pv $CACHE_DIR/distfiles
 mkdir -pv $LIB_DIR
 mkdir -pv /usr/python_dist
+mkdir -pv /usr/share/texmf
 
 touch $LIB_DIR/nest
 
@@ -57,7 +58,7 @@ fi
 
 
 prog_line "Downloading package tarballs"
-$BIRB_SRC_DIR/birb --download man-pages iana-etc vim zlib bzip2 xz zstd file gmp mpfr ncurses readline m4 bc flex tcl expect dejagnu binutils mpc gcc isl attr acl libcap shadow pkg-config sed psmisc gettext bison grep bash libtool gdbm gperf expat inetutils less perl stow xml-parser intltool autoconf automake openssl kmod libelf libffi python3 flit-core wheel ninja meson coreutils
+$BIRB_SRC_DIR/birb --download man-pages iana-etc vim zlib bzip2 xz zstd file gmp mpfr ncurses readline m4 bc flex tcl expect dejagnu binutils mpc gcc isl attr acl libcap shadow pkg-config sed psmisc gettext bison grep bash libtool gdbm gperf expat inetutils less perl stow xml-parser intltool autoconf automake openssl kmod libelf libffi python3 flit-core wheel ninja meson coreutils check diffutils gawk findutils groff popt mandoc efivar efibootmgr freetype harfbuzz icu libtasn1 p11-kit make-ca curl libarchive libuv libxml2 nghttp2 cmake graphite2 wget nss nspr sqlite gzip iproute2 kbd libpipeline make patch tar texinfo eudev man-db procps-ng util-linux e2fsprogs sysklogd sysvinit dash
 
 # The package manager installation will be finished
 # in the chroot environment to avoid polluting the installation
