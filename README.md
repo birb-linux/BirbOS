@@ -9,6 +9,10 @@ BirbOS is a GNU/Linux distribution mostly based on the [Linux From Scratch](http
     - [Starting the installation](#starting-the-installation)
     - [Kernel configuration](#kernel-configuration)
     - [Booting](#booting)
+- [Post installation](#post-installation)
+    - [Chrooting into BirbOS](#chrooting-into-birbos)
+    - [Connecting to the internet](#connecting-to-the-internet)
+    - [How to install packages](#how-to-install-packages)
 
 ## Disclaimer
 **This is a learning project at most and shouldn't be relied upon as a production ready distro!** If you want similar, but a smoother and way better Linux desktop experience, please use [Gentoo](https://www.gentoo.org/) instead.
@@ -68,3 +72,22 @@ If your hardware configuration is something similar to what is listed above, you
 
 ### Booting
 The scripts only copy the kernel files to /boot and do nothing else. The bootloader needs to be set up manually by the user. This might involve creating a custom menuentry to GRUB etc. Make sure to set the root partition in the menuentry appropriately
+
+## Post installation
+The base installation of BirbOS is quite barebones. It has things like `git`, `wget` and `curl` installed however, so you can easily download more stuff from the internet (assuming you get that working). You can finish the system installation by booting into your fresh BirbOS installation or by staying in the [chroot environment](#chrooting-into-birbos).
+
+### Chrooting into BirbOS
+Whenever something goes horribly wrong and you can't boot to BirbOS for some reason, you can't attempt to chroot into it. You can do this by mounting the BirbOS root partition to the `/mnt/lfs` directory that was created during the installation. After that, simply run the script `./installer/enter_chroot.sh` located in the BirbOS source directory. The script will chroot into the BirbOS installation after bind mounting /dev, /proc, /sys etc.. In the chroot environment you can run commands as the root user.
+
+### Connecting to the internet
+By default there won't be any network interfaces up. You can fix this with the `ifconfig` command. To get an IP address, start the `dhcpcd` daemon.
+
+If there are any errors referring to firmware, refer to [this LFS page](https://www.linuxfromscratch.org/blfs/view/stable/postlfs/firmware.html) for instructions on how to install any missing firmware blobs.
+
+### How to install packages
+Have a look at the `birb` man page for instructions on using the included package manager
+```sh
+man birb
+```
+
+If you don't want to use the included package manager, you can also install software by manually compiling from source. AppImages aren't supported out-of-the-box due to missing libraries.
