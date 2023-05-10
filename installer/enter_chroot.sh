@@ -23,4 +23,4 @@ mount -vt proc proc $LFS/proc
 mount -vt sysfs sysfs $LFS/sys
 mount -vt tmpfs tmpfs $LFS/run
 
-chroot "$LFS" /bin/bash --login
+chroot "$LFS" /usr/bin/env -i HOME=/root TERM="$TERM" /bin/bash --login
