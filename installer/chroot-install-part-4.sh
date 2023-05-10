@@ -39,8 +39,15 @@ cat > /etc/os-release << "EOF"
 NAME="BirbOS"
 VERSION="1.0"
 ID=birbos
-PRETTY_NAME="BirbOS 1.0"
+PRETTY_NAME="BirbOS"
 EOF
+
+prog_line "Cleaning up installation files"
+rm -rf /sources
+rm -f /chroot-install-part-*.sh
+rm -f /birb_config
+rm -f /chroot-install.sh
+rm -rf /root/{BirbOS_Progress.txt,bootstrap-scripts}
 
 echo "Lets setup a password for the root user!"
 passwd

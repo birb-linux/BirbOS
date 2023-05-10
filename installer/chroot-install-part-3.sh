@@ -54,6 +54,10 @@ ff02::2   ip6-allrouters
 EOF
 
 
+prog_line "Update certificates"
+make-ca -g
+
+
 prog_line "Configure SysVinit"
 cat > /etc/inittab << "EOF"
 # Begin /etc/inittab
@@ -179,14 +183,10 @@ cat > /etc/shells << "EOF"
 
 /bin/sh
 /bin/bash
-/bin/dash
 
 # End /etc/shells
 EOF
 
-
-prog_line "Symlink /bin/sh to dash"
-ln -svf /usr/bin/dash /bin/sh
 
 prog_line "Configure fstab"
 cat > /etc/fstab << "EOF"
