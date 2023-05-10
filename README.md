@@ -1,6 +1,8 @@
 # BirbOS
 BirbOS is a GNU/Linux distribution mostly based on the [Linux From Scratch](https://www.linuxfromscratch.org/) project. The installation process is automated though, so no worries, you don't have to go through LFS manually to get this thing installed :P
 
+There are no stage-3 tarballs available and everything is compiled from the ground up, so make sure you have enough time in your hands if you decide to install BirbOS on your computers. It is impossible to give any time estimates, but simply saying that the installation involves compiling gcc thrice should give some direction.
+
 ## Table of contents
 - [Disclaimer](#disclaimer)
 - [Features](#features)
