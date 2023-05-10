@@ -119,17 +119,120 @@ EOF
 sed -i "s/CONSOLE_KEYMAP/$CONSOLE_KEYMAP/" /etc/sysconfig/console
 
 
-prog_line "Configure Bash profile"
+prog_line "Configure bash profile"
 cat > /etc/profile << "EOF"
 # Begin /etc/profile
 
+# Set system language
 export LANG=SYSTEM_LANGUAGE
+
+# Add any directories here that you want to add into the global PATH variable
 export PATH=/usr/bin:/usr/sbin:/usr/local/bin:/bin:/sbin:/usr/python_bin
-export PS1='\u@\h \w \$ '
+
+# Set up some shell history environment variables
+export HISTSIZE=1000
+export HISTIGNORE="&:[bf]g:exit"
+
+# Set some defaults for graphical systems
+export XDG_DATA_DIRS=${XDG_DATA_DIRS:-/usr/share/}
+export XDG_CONFIG_DIRS=${XDG_CONFIG_DIRS:-/etc/xdg/}
+export XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR:-/tmp/xdg-$USER}
+
+# Set up a red prompt for root and a green one for users
+if [[ $EUID == 0 ]] ; then
+  PS1="\[\033[01;31m\]\h\[\033[01;34m\] \w \$\[\033[00m\] "
+else
+  PS1="\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] "
+fi
+
+# Run any startup scripts located at /etc/profile.d
+for script in /etc/profile.d/*.sh ; do
+        if [ -r $script ] ; then
+                . $script
+        fi
+done
+
+unset script
 
 # End /etc/profile
 EOF
 sed -i "s/SYSTEM_LANGUAGE/$SYSTEM_LANGUAGE/" /etc/profile
+install --directory --mode=0755 --owner=root --group=root /etc/profile.d
+
+prog_line "Setup bash completion"
+cat > /etc/profile.d/bash_completion.sh << "EOF"
+# Begin /etc/profile.d/bash_completion.sh
+# Import bash completion scripts
+
+# If the bash-completion package is installed, use its configuration instead
+if [ -f /usr/share/bash-completion/bash_completion ]; then
+
+  # Check for interactive bash and that we haven't already been sourced.
+  if [ -n "${BASH_VERSION-}" -a -n "${PS1-}" -a -z "${BASH_COMPLETION_VERSINFO-}" ]; then
+
+    # Check for recent enough version of bash.
+    if [ ${BASH_VERSINFO[0]} -gt 4 ] || \
+       [ ${BASH_VERSINFO[0]} -eq 4 -a ${BASH_VERSINFO[1]} -ge 1 ]; then
+       [ -r "${XDG_CONFIG_HOME:-$HOME/.config}/bash_completion" ] && \
+            . "${XDG_CONFIG_HOME:-$HOME/.config}/bash_completion"
+       if shopt -q progcomp && [ -r /usr/share/bash-completion/bash_completion ]; then
+          # Source completion code.
+          . /usr/share/bash-completion/bash_completion
+       fi
+    fi
+  fi
+
+else
+
+  # bash-completions are not installed, use only bash completion directory
+  if shopt -q progcomp; then
+    for script in /etc/bash_completion.d/* ; do
+      if [ -r $script ] ; then
+        . $script
+      fi
+    done
+  fi
+fi
+
+# End /etc/profile.d/bash_completion.sh
+EOF
+
+install --directory --mode=0755 --owner=root --group=root /etc/bash_completion.d
+
+
+prog_line "Set the 'umask' variable"
+cat > /etc/profile.d/umask.sh << "EOF"
+# By default, the umask should be set.
+if [ "$(id -gn)" = "$(id -un)" -a $EUID -gt 99 ] ; then
+  umask 002
+else
+  umask 022
+fi
+EOF
+
+
+prog_line "Create the default bashrc file"
+cat > /etc/bashrc << "EOF"
+if [[ $- != *i* ]] ; then
+	# Shell is non-interactive
+	return
+fi
+
+shopt -s checkwinsize
+shopt -s no_empty_cmd_completion
+shopt -s histappend
+
+# Some colorful commands
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+
+# Set vim as the default editor
+export EDITOR=vim
+
+# Set a much more expressive default sudo prompt
+export SUDO_PROMPT="(* ^ ω ^) Mayw I hav ur passwrd sir: "
+EOF
+
 
 
 prog_line "Configure readline"
@@ -176,6 +279,14 @@ set bell-style none
 # End /etc/inputrc
 EOF
 
+cat > /etc/profile.d/readline.sh << "EOF"
+# Set up the INPUTRC environment variable.
+if [ -z "$INPUTRC" -a ! -f "$HOME/.inputrc" ] ; then
+        INPUTRC=/etc/inputrc
+fi
+export INPUTRC
+EOF
+
 
 prog_line "Create the /etc/shells file"
 cat > /etc/shells << "EOF"
@@ -211,13 +322,24 @@ EOF
 sed -i "s|xxx|$TARGET_PARTITION|" /etc/fstab
 sed -i "s|yyy|$BOOT_PARTITION|" /etc/fstab
 
+
+prog_line "Install a bootscript that makes the random entropy Pools less predictable during startup"
+cd /tmp
+BOOTSCRIPT_FILE_PATH="blfs-bootscripts-20230101"
+wget https://anduin.linuxfromscratch.org/BLFS/blfs-bootscripts/${BOOTSCRIPT_FILE_PATH}.tar.xz
+tar -xf $BOOTSCRIPT_FILE_PATH.tar.xz
+cd /tmp/$BOOTSCRIPT_FILE_PATH
+make install-random
+cd /tmp
+rm -rf $BOOTSCRIPT_FILE_PATH $BOOTSCRIPT_FILE_PATH.tar.xz
+
 prog_line "Mounting the /boot partition"
 mount /boot
 
 prog_line "Preparing for kernel configuration"
 mkdir -pv /usr/src /etc/modprobe.d
 cd /usr/src
-[ -d /usr/src/linux-* ] && rm -r /usr/src/linux-*
+#[ -d /usr/src/linux-* ] && rm -r /usr/src/linux-*
 tar -xf /sources/linux-*
 ln -sf /usr/src/linux-* /usr/src/linux
 cd /usr/src/linux

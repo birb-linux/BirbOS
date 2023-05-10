@@ -1,4 +1,10 @@
+# BirbOS root partition
+# This partition will be wiped during the installation
 TARGET_PARTITION="/dev/nvme1n1p4"
+
+# BirbOS boot partition
+# Can be shared with other distros, the partition won't be
+# wiped
 BOOT_PARTITION="/dev/nvme1n1p1"
 
 HOSTNAME="tux"

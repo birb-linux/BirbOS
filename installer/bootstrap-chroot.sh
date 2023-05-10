@@ -53,7 +53,12 @@ fi
 
 
 prog_line "Starting the birb package manager setup"
+
+# The bash completion directory is needed for birb bash autocompletion
+mkdir -p /etc/bash_completion.d
+
 ./birb-setup.sh
+
 
 prog_line "Entering the chroot environment"
 echo "To continue with the installation in the chroot environment, run the 'chroot-install.sh' script located at the root directory"

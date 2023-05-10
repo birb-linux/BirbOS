@@ -43,7 +43,7 @@ PRETTY_NAME="BirbOS"
 EOF
 
 prog_line "Cleaning up installation files"
-rm -rf /sources
+#rm -rf /sources
 rm -f /chroot-install-part-*.sh
 rm -f /birb_config
 rm -f /chroot-install.sh

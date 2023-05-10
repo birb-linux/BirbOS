@@ -47,6 +47,12 @@ rm -rf /tools
 
 # Recreate the documentation directories, so that stow doesn't take over them
 mkdir -pv /usr/share/{info,man/man{1..8},doc}
+touch /usr/share/info/.birb_symlink_lock
+touch /usr/share/man/.birb_symlink_lock
+touch /usr/share/man/man{1..8}/.birb_symlink_lock
+
+# Make sure that stow can't take over /usr/share/pkgconfig
+touch /usr/share/pkgconfig/.birb_symlink_lock
 
 ~/bootstrap-scripts/chroot-temptools/glibc.sh
 

@@ -1,7 +1,6 @@
 #!/bin/bash
 
-[ "$2" == "DEV_MODE" ] && DEV_MODE="enabled" && echo "Developer mode is enabled! All warnings will be skipped. Please be careful..."
-read -p "Hit ENTER to continue ʕ •ᴥ•ʔ"
+[ "$2" == "DEV_MODE" ] && DEV_MODE="enabled" && echo "Developer mode is enabled! All warnings will be skipped. Please be careful..." && read -p "Hit ENTER to continue ʕ •ᴥ•ʔ"
 
 source ./installer-funcs.sh
 
