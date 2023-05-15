@@ -68,7 +68,6 @@ yes 'n' | birb man-pages iana-etc vim zlib bzip2 xz zstd file pkg-config ncurses
 yes 'n' | birb xml-parser
 yes 'n' | birb intltool
 yes 'n' | birb autoconf automake openssl kmod libelf libffi python3 flit-core wheel ninja meson coreutils check diffutils gawk findutils groff popt mandoc icu libtasn1 p11-kit sqlite nspr nss make-ca curl libarchive libuv libxml2 nghttp2 cmake graphite2 wget gzip iproute2 kbd libpipeline make patch tar texinfo eudev man-db procps-ng util-linux e2fsprogs sysklogd sysvinit
-yes 'n' | git
 
 
 # Handle the freetype2 and harfbuzz chickend/egg issue

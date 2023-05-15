@@ -47,4 +47,4 @@ sysvinit_consolidated_patch="https://www.linuxfromscratch.org/patches/lfs/develo
 # Some extra packages needed to finish the installation
 stow="https://ftp.gnu.org/gnu/stow/stow-2.3.1.tar.gz;4dfd82b93bb6702d018b1d57e498a74d"
 tzdata="https://www.iana.org/time-zones/repository/releases/tzdata2023c.tar.gz;5aa672bf129b44dd915f8232de38e49a"
-lfs_bootscripts="https://www.linuxfromscratch.org/lfs/downloads/development/lfs-bootscripts-20230101.tar.xz;3b8afc6629a5f26979b66c57a46d234b"
+lfs_bootscripts="https://www.linuxfromscratch.org/lfs/downloads/development/lfs-bootscripts-20230101.tar.xz;0bd3cfcdf8e48ac670377392429291ee"

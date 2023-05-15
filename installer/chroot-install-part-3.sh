@@ -322,6 +322,8 @@ EOF
 sed -i "s|xxx|$TARGET_PARTITION|" /etc/fstab
 sed -i "s|yyy|$BOOT_PARTITION|" /etc/fstab
 
+prog_line "Install git for birb"
+yes 'n' | git
 
 prog_line "Install a bootscript that makes the random entropy Pools less predictable during startup"
 cd /tmp
