@@ -35,6 +35,9 @@ DISTRIB_ID="BirbOS"
 DISTRIB_RELEASE="1.0"
 EOF
 
+prog_line "Sourcing /etc/profile"
+source /etc/profile
+
 cat > /etc/os-release << "EOF"
 NAME="BirbOS"
 VERSION="1.0"
