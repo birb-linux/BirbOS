@@ -23,7 +23,9 @@ mkdir -pv /usr/{,local/}share/{misc,terminfo,zoneinfo}
 mkdir -pv /usr/{,local/}share/man/man{1..8}
 mkdir -pv /var/{cache,local,log,mail,opt,spool}
 mkdir -pv /var/lib/{color,misc,locate}
+
 mkdir -pv /usr/share/fonts/TTF
+touch /usr/share/fonts/TTF/.birb_symlink_lock
 
 # Make sure that birb doesn't create any symlinks to certain
 # empty directories
