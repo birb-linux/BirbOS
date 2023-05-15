@@ -27,6 +27,9 @@ mkdir -pv /var/lib/{color,misc,locate}
 mkdir -pv /usr/share/fonts/TTF
 touch /usr/share/fonts/TTF/.birb_symlink_lock
 
+mkdir -pv /usr/share/applications
+touch /usr/share/applications/.birb_symlink_lock
+
 # Make sure that birb doesn't create any symlinks to certain
 # empty directories
 touch /sbin/.birb_symlink_lock
