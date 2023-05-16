@@ -46,6 +46,7 @@ find_program wget
 find_program git
 find_program curl
 find_program mkfs.ext4
+find_program sudo
 
 [ -n "$MISSING_PROGRAMS" ] && echo "There were missing programs! Please install them before continuing with the installation..." && exit 1
 
