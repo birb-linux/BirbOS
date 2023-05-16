@@ -335,9 +335,6 @@ make install-random
 cd /tmp
 rm -rf $BOOTSCRIPT_FILE_PATH $BOOTSCRIPT_FILE_PATH.tar.xz
 
-prog_line "Mounting the /boot partition"
-mount /boot
-
 prog_line "Preparing for kernel configuration"
 mkdir -pv /usr/src /etc/modprobe.d
 cd /usr/src
