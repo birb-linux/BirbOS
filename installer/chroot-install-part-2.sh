@@ -64,19 +64,19 @@ make
 make install
 
 prog_line "Installing the rest of the system packages with birb"
-yes 'n' | birb man-pages iana-etc vim zlib bzip2 xz zstd file pkg-config ncurses readline m4 bc flex tcl expect dejagnu binutils gmp mpfr mpc isl attr acl libcap shadow gcc sed psmisc gettext bison grep bash libtool gdbm gperf expat inetutils less perl stow
-yes 'n' | birb xml-parser
-yes 'n' | birb intltool
-yes 'n' | birb autoconf automake openssl kmod libelf libffi python3 flit-core wheel ninja meson coreutils check diffutils gawk findutils groff popt mandoc icu libtasn1 p11-kit sqlite nspr nss make-ca curl libarchive libuv libxml2 nghttp2 cmake graphite2 wget gzip iproute2 kbd libpipeline make patch tar texinfo eudev man-db procps-ng util-linux e2fsprogs sysklogd sysvinit
+yes 'n' | birb --install --overwrite man-pages iana-etc vim zlib bzip2 xz zstd file pkg-config ncurses readline m4 bc flex tcl expect dejagnu binutils gmp mpfr mpc isl attr acl libcap shadow gcc sed psmisc gettext bison grep bash libtool gdbm gperf expat inetutils less perl stow
+yes 'n' | birb --install --overwrite xml-parser
+yes 'n' | birb --install --overwrite intltool
+yes 'n' | birb --install --overwrite autoconf automake openssl kmod libelf libffi python3 flit-core wheel ninja meson coreutils check diffutils gawk findutils groff popt mandoc icu libtasn1 p11-kit sqlite nspr nss make-ca curl libarchive libuv libxml2 nghttp2 cmake graphite2 wget gzip iproute2 kbd libpipeline make patch tar texinfo eudev man-db procps-ng util-linux e2fsprogs sysklogd sysvinit
 
 
 # Handle the freetype2 and harfbuzz chickend/egg issue
-yes | birb freetype
-yes | birb harfbuzz
-yes | birb freetype
+yes | birb --install --overwrite freetype
+yes | birb --install --overwrite harfbuzz
+yes | birb --install --overwrite freetype
 
 ## Reinstall graphite2 to add the freetype and harfbuzz functionality into it
-yes | birb graphite2
+yes | birb --install --overwrite graphite2
 
 prog_line "Installing some custom udev rules meant for lfs installations"
 cd /sources
