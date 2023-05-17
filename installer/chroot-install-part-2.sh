@@ -51,8 +51,11 @@ touch /usr/share/info/.birb_symlink_lock
 touch /usr/share/man/.birb_symlink_lock
 touch /usr/share/man/man{1..8}/.birb_symlink_lock
 
-# Make sure that stow can't take over /usr/share/pkgconfig
+# Make sure that stow can't take over certain other directories
 touch /usr/share/pkgconfig/.birb_symlink_lock
+mkdir -p /lib/udev/rules.d
+touch /lib/udev/rules.d/.birb_symlink_lock
+
 
 ~/bootstrap-scripts/chroot-temptools/glibc.sh
 
