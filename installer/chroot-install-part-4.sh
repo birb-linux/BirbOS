@@ -52,6 +52,12 @@ rm -f /birb_config
 rm -f /chroot-install.sh
 rm -rf /root/{BirbOS_Progress.txt,bootstrap-scripts}
 
+prog_line "Remove some possibly broken symlinks"
+[ -L /usr/lib/lib ] && rm -v /usr/lib/lib
+[ -L /usr/lib32/lib32 ] && rm -v /usr/lib32/lib32
+[ -L /usr/bin/bin ] && rm -v /usr/bin/bin
+[ -L /sbin/sbin ] && rm -v /sbin/sbin
+
 echo "Lets setup a password for the root user!"
 passwd
 
