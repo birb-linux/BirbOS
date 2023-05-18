@@ -72,6 +72,8 @@ yes 'n' | birb --install --overwrite xml-parser
 yes 'n' | birb --install --overwrite intltool
 yes 'n' | birb --install --overwrite autoconf automake openssl kmod libelf libffi python3 flit-core wheel ninja meson coreutils check diffutils gawk findutils groff popt mandoc icu libtasn1 p11-kit sqlite nspr nss make-ca curl libarchive libuv libxml2 nghttp2 cmake graphite2 wget gzip iproute2 kbd libpipeline make patch tar texinfo eudev man-db procps-ng util-linux e2fsprogs sysklogd sysvinit
 
+# Python3 needs to be recompiled after sqlite is installed. Otherwise firefox won't compile
+yes | birb --install python3
 
 # Handle the freetype2 and harfbuzz chickend/egg issue
 yes | birb --install --overwrite freetype
