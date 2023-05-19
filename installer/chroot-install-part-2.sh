@@ -83,6 +83,10 @@ yes | birb --install --overwrite freetype
 ## Reinstall graphite2 to add the freetype and harfbuzz functionality into it
 yes | birb --install --overwrite graphite2
 
+
+# Some applications (like steam for example) look for ldconfig from /sbin instead of /usr/sbin
+[ ! -L /sbin/ldconfig ] && ln -srfv /usr/sbin/ldconfig /sbin/ldconfig
+
 prog_line "Installing some custom udev rules meant for lfs installations"
 cd /sources
 tar -xf udev-lfs-20171102.tar.xz
