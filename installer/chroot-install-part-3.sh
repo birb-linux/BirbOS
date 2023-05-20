@@ -103,7 +103,8 @@ CLOCKPARAMS=
 # End /etc/sysconfig/clock
 EOF
 
-echo "$TIME_ZONE" > /etc/timezone
+#echo "$TIME_ZONE" > /etc/timezone
+ln -sv /usr/share/zoneinfo/$TIME_ZONE /etc/localtime
 
 
 prog_line "Set default console variables"
