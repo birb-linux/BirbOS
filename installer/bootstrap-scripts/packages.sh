@@ -40,9 +40,7 @@ bzip2_documentation_patch="https://www.linuxfromscratch.org/patches/lfs/developm
 coreutils_internationalization_fixes_patch="https://www.linuxfromscratch.org/patches/lfs/development/coreutils-9.3-i18n-1.patch;3c6340b3ddd62f4acdf8d3caa6fad6b0"
 glibc_fhs_patch="https://www.linuxfromscratch.org/patches/lfs/development/glibc-2.37-fhs-1.patch;9a5997c3452909b1769918c759eff8a2"
 grub_upstream_fixes_patch="https://www.linuxfromscratch.org/patches/lfs/development/grub-2.06-upstream_fixes-1.patch;da388905710bb4cbfbc7bd7346ff9174"
-kbd_backspace_delete_fix_patch="https://www.linuxfromscratch.org/patches/lfs/development/kbd-2.5.1-backspace-1.patch;f75cca16a38da6caa7d52151f7136895"
 readline_upstream_fix_patch="https://www.linuxfromscratch.org/patches/lfs/development/readline-8.2-upstream_fix-1.patch;dd1764b84cfca6b677f44978218a75da"
-sysvinit_consolidated_patch="https://www.linuxfromscratch.org/patches/lfs/development/sysvinit-3.06-consolidated-1.patch;17ffccbb8e18c39e8cedc32046f3a475"
 
 # Some extra packages needed to finish the installation
 stow="https://ftp.gnu.org/gnu/stow/stow-2.3.1.tar.gz;4dfd82b93bb6702d018b1d57e498a74d"
