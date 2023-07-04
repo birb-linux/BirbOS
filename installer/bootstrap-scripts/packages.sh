@@ -15,7 +15,7 @@ glibc="https://ftp.gnu.org/gnu/glibc/glibc-2.37.tar.xz;e89cf3dcb64939d29f04b4cee
 m4="https://ftp.gnu.org/gnu/m4/m4-1.4.19.tar.xz;0d90823e1426f1da2fd872df0311298d"
 ncurses="https://invisible-mirror.net/archives/ncurses/ncurses-6.4.tar.gz;5a62487b5d4ac6b132fe2bf9f8fad29b"
 bash="https://ftp.gnu.org/gnu/bash/bash-5.2.15.tar.gz;4281bb43497f3905a308430a8d6a30a5"
-coreutils="https://ftp.gnu.org/gnu/coreutils/coreutils-9.2.tar.xz;4a8a5097d8d7315ccfd6be7eafc8c862"
+coreutils="https://ftp.gnu.org/gnu/coreutils/coreutils-9.3.tar.xz;040b4b7acaf89499834bfc79609af29f"
 diffutils="https://ftp.gnu.org/gnu/diffutils/diffutils-3.9.tar.xz;cf0a65266058bf22fe3feb69e57ffc5b"
 file="https://astron.com/pub/file/file-5.44.tar.gz;a60d586d49d015d842b9294864a89c7a"
 findutils="https://ftp.gnu.org/gnu/findutils/findutils-4.9.0.tar.xz;4a4a547e888a944b2f3af31d789a1137"
@@ -37,7 +37,7 @@ udev_lfs="https://anduin.linuxfromscratch.org/LFS/udev-lfs-20171102.tar.xz;27cd8
 
 # Some patches required for LFS
 bzip2_documentation_patch="https://www.linuxfromscratch.org/patches/lfs/development/bzip2-1.0.8-install_docs-1.patch;6a5ac7e89b791aae556de0f745916f7f"
-coreutils_internationalization_fixes_patch="https://www.linuxfromscratch.org/patches/lfs/development/coreutils-9.2-i18n-1.patch;3c6340b3ddd62f4acdf8d3caa6fad6b0"
+coreutils_internationalization_fixes_patch="https://www.linuxfromscratch.org/patches/lfs/development/coreutils-9.3-i18n-1.patch;3c6340b3ddd62f4acdf8d3caa6fad6b0"
 glibc_fhs_patch="https://www.linuxfromscratch.org/patches/lfs/development/glibc-2.37-fhs-1.patch;9a5997c3452909b1769918c759eff8a2"
 grub_upstream_fixes_patch="https://www.linuxfromscratch.org/patches/lfs/development/grub-2.06-upstream_fixes-1.patch;da388905710bb4cbfbc7bd7346ff9174"
 kbd_backspace_delete_fix_patch="https://www.linuxfromscratch.org/patches/lfs/development/kbd-2.5.1-backspace-1.patch;f75cca16a38da6caa7d52151f7136895"
