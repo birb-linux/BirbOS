@@ -3,6 +3,9 @@ BirbOS is a GNU/Linux distribution mostly based on the [Linux From Scratch](http
 
 There are no stage-3 tarballs available and everything is compiled from the ground up, so make sure you have enough time in your hands if you decide to install BirbOS on your computers. It is impossible to give any time estimates, but simply saying that the installation involves compiling gcc thrice should give some direction.
 
+> **Warning**
+> If you plan on installing BirbOS, please read the [Disclaimer](#disclaimer) chapter carefully. Installing BirbOS will make changes to your host distro and there's a risk for data loss if you are not careful
+
 ## Table of contents
 - [Disclaimer](#disclaimer)
 - [Features](#features)
