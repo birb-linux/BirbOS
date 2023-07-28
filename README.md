@@ -72,9 +72,10 @@ The default kernel config file that is bundled with the installation scripts is 
 The default kernel is configured with this hardware list in mind
 - AMD Ryzen 5 5600G
 - NVIDIA GeForce RTX 3060
-- NVMe SSD
+- M.2 NVMe SSD
 - Realtek Semiconductor Co., Ltd. RTL8125
 - Family 17h/19h HD Audio Controller
+- No WiFi
 
 If your hardware configuration is something similar to what is listed above, you might have some luck with minimal editing using the provided kernel configuration. The kernel config has most of the Intel CPU stuff and AMD GPU options disabled.
 
