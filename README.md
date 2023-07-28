@@ -31,13 +31,16 @@ There might be some other changes too that I'm forgetting, but these should be t
 
 ## Features
 These are the main "goals" of this project:
-- A custom package manager called [birb](https://github.com/Toasterbirb/birb)
-- 32-bit support. I want muh Steam games to work
-- Support for Nvidia gpus and possibly hybrid graphics for laptops.
-- Full X11 desktop with dwm
-- Enough packages in repos to get school work done
-- Wine, Lutris and Steam for windows gaming
-- (Bonus) A way to re-install the system in a somewhat reproducible way
+- [x] A custom package manager called [birb](https://github.com/Toasterbirb/birb)
+- [x] 32-bit support. I want muh Steam games to work
+- [x] Support for Nvidia gpus and possibly hybrid graphics for laptops.
+- [x] Full X11 desktop with dwm
+- [ ] Enough packages in repos to get school work done
+- [ ] Wine, Lutris and Steam for windows gaming
+- [ ] (Bonus) A way to re-install the system in a somewhat reproducible way
+
+> **Note**
+> As for games ATM, the Steam launcher is in the core repository, but Steam refuses to connect to the internet
 
 ## Installation
 The installation is mostly guided with instructions shown in the installation script output. There shouldn't be any user intervention required during the installation other than what the scripts tell you to do.
