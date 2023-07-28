@@ -18,6 +18,12 @@ There are no stage-3 tarballs available and everything is compiled from the grou
     - [Chrooting into BirbOS](#chrooting-into-birbos)
     - [Connecting to the internet](#connecting-to-the-internet)
     - [How to install packages](#how-to-install-packages)
+		- [Distro independent package management schemes](#distro-independent-package-management-schemes)
+			- [AppImage](#appimage)
+			- [Flatpak](#flatpak)
+			- [Nix store](#nix-store)
+			- [Snap](#snap)
+			- [Stealing packages from other distros](#stealing-packages-from-other-distros)
 
 ## Disclaimer
 **This is a learning project at most and shouldn't be relied upon as a production ready distro!** If you want similar, but a smoother and way better Linux desktop experience, please use [Gentoo](https://www.gentoo.org/) instead.
@@ -35,12 +41,13 @@ These are the main "goals" of this project:
 - [x] 32-bit support. I want muh Steam games to work
 - [x] Support for Nvidia gpus and possibly hybrid graphics for laptops.
 - [x] Full X11 desktop with dwm
+- [ ] Full Wayland desktop with dwl
+	- [ ] Wayland alternatives for basic stuff like image viewers, terminal emulators...
 - [ ] Enough packages in repos to get school work done
 - [ ] Wine, Lutris and Steam for windows gaming
 - [ ] (Bonus) A way to re-install the system in a somewhat reproducible way
 
-> **Note**
-> As for games ATM, the Steam launcher is in the core repository, but Steam refuses to connect to the internet
+As for games ATM, the Steam launcher is in the core repository, but Steam refuses to connect to the internet. You might have some luck running native linux games however by copying the files over
 
 ## Installation
 The installation is mostly guided with instructions shown in the installation script output. There shouldn't be any user intervention required during the installation other than what the scripts tell you to do.
@@ -75,28 +82,69 @@ The default kernel is configured with this hardware list in mind
 - M.2 NVMe SSD
 - Realtek Semiconductor Co., Ltd. RTL8125
 - Family 17h/19h HD Audio Controller
-- No WiFi
+- No WiFi / Bluetooth
 
 If your hardware configuration is something similar to what is listed above, you might have some luck with minimal editing using the provided kernel configuration. The kernel config has most of the Intel CPU stuff and AMD GPU options disabled.
 
 ### Booting
-The scripts only copy the kernel files to /boot and do nothing else. The bootloader needs to be set up manually by the user. This might involve creating a custom menuentry to GRUB etc. Make sure to set the root partition in the menuentry appropriately
+The scripts only copy the kernel files to /boot and do nothing else. The bootloader needs to be set up manually by the user. This might involve creating a custom menuentry to GRUB etc. Make sure to set the root partition in the menuentry appropriately.
+
+`efibootmgr` is packaged in the core repository, so you can use that as a GRUB alternative.
 
 ## Post installation
 The base installation of BirbOS is quite barebones. It has things like `git`, `wget` and `curl` installed however, so you can easily download more stuff from the internet (assuming you get that working). You can finish the system installation by booting into your fresh BirbOS installation or by staying in the [chroot environment](#chrooting-into-birbos).
 
+> **Note**
+> This is a good point to take a full backup of the BirbOS root filesystem in case something goes wrong with the rest of the installation, unless you want to spend more time compiling stuff all over again
+
 ### Chrooting into BirbOS
-Whenever something goes horribly wrong and you can't boot to BirbOS for some reason, you can't attempt to chroot into it. You can do this by mounting the BirbOS root partition to the `/mnt/lfs` directory that was created during the installation. After that, simply run the script `./installer/enter_chroot.sh` located in the BirbOS source directory. The script will chroot into the BirbOS installation after bind mounting /dev, /proc, /sys etc.. In the chroot environment you can run commands as the root user.
+Whenever something goes horribly wrong and you can't boot to BirbOS for some reason, you can attempt to chroot into it. You can do this by mounting the BirbOS root partition to the `/mnt/lfs` directory that was created during the installation. After that, simply run the script `./installer/enter_chroot.sh` located in the BirbOS source directory. The script will chroot into the BirbOS installation after bind mounting /dev, /proc, /sys etc.. In the chroot environment you can run commands as the root user.
+
+If the problem is so severe that you can't chroot to your installation (due to missing files etc.), you might want to restore your backups to the mounted filesystem (you took backups, right?). Just remember that the `/usr/bin` directory in BirbOS doesn't actually contain the binaries but rather symlinks to `/var/db/fakeroot`, so if you want to copy over something into that directory to fix thing, you might have to reinstall those said packages with `birb` later on with the `birb --install --overwrite` flags if you want to keep using the system normally.
 
 ### Connecting to the internet
+> **Important**
+> If you need dhcpcd or any other networking related programs, remember to install them in the chroot environment before rebooting to BirbOS. Downloading packages without internet is difficult
+
 By default there won't be any network interfaces up. You can fix this with the `ifconfig` command. To get an IP address, start the `dhcpcd` daemon.
 
 If there are any errors referring to firmware, refer to [this LFS page](https://www.linuxfromscratch.org/blfs/view/stable/postlfs/firmware.html) for instructions on how to install any missing firmware blobs.
 
 ### How to install packages
-Have a look at the `birb` man page for instructions on using the included package manager
+Installing packages with `birb` is as simple as this
+```sh
+birb vim htop pfetch
+```
+You can install multiple packages consecutively at once and the package manager will figure out the dependencies needed to make that happen.
+
+You can uninstall something with the `--uninstall` flag
+```sh
+birb --uninstall emacs
+```
+
+Have a look at the `birb` man page for more detailed instructions
 ```sh
 man birb
 ```
 
-If you don't want to use the included package manager, you can also install software by manually compiling from source. AppImages aren't supported out-of-the-box due to missing libraries.
+If you don't want to use the included package manager, you can also install software by manually compiling from source.
+
+#### Distro independent package management schemes
+##### AppImage
+AppImages aren't supported out-of-the-box due to missing libraries, but you can attempt extracting the AppImage files and running them manually. This might require some env variable tweaking to get working.
+
+You might be able to get AppImages working natively if you manage to compile and install fuse2.
+
+##### Flatpak
+Flatpak isn't supported yet due to some missing dependencies, but it might be packaged in the future to make installing big 32bit programs like Steam easier and more convinient.
+
+If feasible, flatpak could be integrated into `birb` directly as an optional thing to increase package availability and possibly security when running proprietary software.
+
+##### Nix store
+The nix store should be fairly trivial to install with no conflicts with the instructions found [here](https://nixos.org/manual/nix/unstable/installation/installation.html).
+
+##### Snap
+No.
+
+##### Stealing packages from other distros
+Extracting deb and rpm files can work in some cases, but in no way is supported or endorsed. You might get away with installing a few such packages with `stow` or some other reversable way, but expect dependency trouble. The mentioned two package management schemes are used by distros with possibly way different (runtime) dependency versions and some packages might also expect SystemD to be present.
