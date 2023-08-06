@@ -8,6 +8,7 @@ There are no stage-3 tarballs available and everything is compiled from the grou
 
 ## Table of contents
 - [Disclaimer](#disclaimer)
+- [Related projects](#related-projects)
 - [Features](#features)
 - [Installation](#installation)
     - [Configuration](#configuration)
@@ -34,6 +35,10 @@ During the installation, there will be modifications to the host distribution, s
 - Possibly changes to the /boot partition to make the installation bootable
 
 There might be some other changes too that I'm forgetting, but these should be the major ones. If you are unsure about the safety of your files, please use a virtual machine and/or take good backups.
+
+## Related projects
+- [birb](https://github.com/Toasterbirb/birb) - Package manager
+- [birb-utils](https://github.com/Toasterbirb/birb-utils) - Miscellaneous utility scripts and programs made for BirbOS
 
 ## Features
 These are the main "goals" of this project:
