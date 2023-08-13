@@ -52,7 +52,7 @@ These are the main "goals" of this project:
 - [ ] Wine, Lutris and Steam for windows gaming
 - [ ] (Bonus) A way to re-install the system in a somewhat reproducible way
 
-As for games ATM, the Steam launcher is in the core repository, but Steam refuses to connect to the internet. You might have some luck running native linux games however by copying the files over
+As for games ATM, the Steam launcher is in the core repository and works for the most part, as in you can download games etc. The games won't launch, but you should be able to launch the games manually. This obviously won't work with windows games though
 
 ## Installation
 The installation is mostly guided with instructions shown in the installation script output. There shouldn't be any user intervention required during the installation other than what the scripts tell you to do.
