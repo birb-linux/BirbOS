@@ -25,6 +25,9 @@ There are no stage-3 tarballs available and everything is compiled from the grou
 			- [Nix store](#nix-store)
 			- [Snap](#snap)
 			- [Stealing packages from other distros](#stealing-packages-from-other-distros)
+- [Known issues](#known-issues)
+    - [GTK+](#gtk)
+    - [Firefox](#firefox)
 
 ## Disclaimer
 **This is a learning project at most and shouldn't be relied upon as a production ready distro!** If you want similar, but a smoother and way better Linux desktop experience, please use [Gentoo](https://www.gentoo.org/) instead.
@@ -153,3 +156,12 @@ No.
 
 ##### Stealing packages from other distros
 Extracting deb and rpm files can work in some cases, but in no way is supported or endorsed. You might get away with installing a few such packages with `stow` or some other reversable way, but expect dependency trouble. The mentioned two package management schemes are used by distros with possibly way different (runtime) dependency versions and some packages might also expect SystemD to be present.
+
+## Known issues
+### GTK+
+Installing GTK+ for the first time will can fail due to some missing .gir files. You can get around this issue by reinstalling the following packages before installing GTK+
+- harfbuzz
+- gdk-pixbuf
+
+### Firefox
+Installing Firefox for the first time might fail due to an error related to HarfBuzz. To get around this, force reinstall the harfbuzz package.
