@@ -40,12 +40,12 @@ During the installation, there will be modifications to the host distribution, s
 There might be some other changes too that I'm forgetting, but these should be the major ones. If you are unsure about the safety of your files, please use a virtual machine and/or take good backups.
 
 ## Related projects
-- [birb](https://github.com/Toasterbirb/birb) - Package manager
-- [birb-utils](https://github.com/Toasterbirb/birb-utils) - Miscellaneous utility scripts and programs made for BirbOS
+- [birb](https://github.com/birb-linux/birb) - Package manager
+- [birb-utils](https://github.com/birb-linux/birb-utils) - Miscellaneous utility scripts and programs made for BirbOS
 
 ## Features
 These are the main "goals" of this project:
-- [x] A custom package manager called [birb](https://github.com/Toasterbirb/birb)
+- [x] A custom package manager called [birb](https://github.com/birb-linux/birb)
 - [x] 32-bit support. I want muh Steam games to work
 - [x] Support for Nvidia gpus and possibly hybrid graphics for laptops.
 - [x] Full X11 desktop with dwm
@@ -77,7 +77,7 @@ Here are some of the scripts that are run during the installation:
 - `lfs-user-bootstrap.sh` Compiles the cross compiling toochain and temporary tools as the LFS user
 - `bootstrap-chroot.sh` Sets up the BirbOS chroot environment and chroots into it
 - `chroot-install.sh` Creates the rest of the core filesystem and does some basic configuration
-- `chroot-install-part-2.sh` Continuation for the `chroot-install.sh` script after the shell restart. It compiles the rest of the temporary tools, installs the [birb](https://github.com/Toasterbirb/birb) package manager and then uses it to install the rest of the needed packages overwriting the temporary tools
+- `chroot-install-part-2.sh` Continuation for the `chroot-install.sh` script after the shell restart. It compiles the rest of the temporary tools, installs the [birb](https://github.com/birb-linux/birb) package manager and then uses it to install the rest of the needed packages overwriting the temporary tools
 - `chroot-install-part-3.sh` Continuation for the `chroot-install-part-2.sh` script and gets run automatically. It creates the rest of the required system configuration files and prepared the kernel for compiling
 - `chroot-install-part-4.sh` The end of the installation. The script compiles and installs the kernel, creates a few last configuration files and cleans up most of the temporary files from the BirbOS installation
 
