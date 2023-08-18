@@ -139,9 +139,9 @@ If you don't want to use the included package manager, you can also install soft
 
 #### Distro independent package management schemes
 ##### AppImage
-AppImages aren't supported out-of-the-box due to missing libraries, but you can attempt extracting the AppImage files and running them manually. This might require some env variable tweaking to get working.
+To run AppImages, install the `fuse2` package. It comes with the libfuse.so.2 library and fusermount, basically the minimum required for AppImages. The rest of the FUSE stuff comes with the `fuse` package that `fuse2` depends on.
 
-You might be able to get AppImages working natively if you manage to compile and install fuse2.
+However be aware that the version 2 of FUSE isn't getting updated anymore and might contain security vulnerabilities. Also the fusermount binary installed with `fuse2` is a setuid binary.
 
 ##### Flatpak
 Flatpak isn't supported yet due to some missing dependencies, but it might be packaged in the future to make installing big 32bit programs like Steam easier and more convinient.
