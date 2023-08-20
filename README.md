@@ -28,6 +28,7 @@ There are no stage-3 tarballs available and everything is compiled from the grou
 - [Known issues](#known-issues)
     - [GTK+](#gtk)
     - [Firefox](#firefox)
+    - [setxkbmap not finding rules](#setxkbmap-not-finding-rules)
 
 ## Disclaimer
 **This is a learning project at most and shouldn't be relied upon as a production ready distro!** If you want similar, but a smoother and way better Linux desktop experience, please use [Gentoo](https://www.gentoo.org/) instead.
@@ -165,3 +166,15 @@ Installing GTK+ for the first time will can fail due to some missing .gir files.
 
 ### Firefox
 Installing Firefox for the first time might fail due to an error related to HarfBuzz. To get around this, force reinstall the harfbuzz package.
+
+### setxkbmap not finding rules
+You might come across the following issue when running `setxkbmap`
+```
+toasterbirb@tux ~ $ setxkbmap fi
+Couldn't find rules file (evdev)
+toasterbirb@tux ~ $
+```
+To fix this, point `setxkbmap` to the rules with the following arguments
+```sh
+setxkbmap -I /usr/share/X11/xkb fi
+```
