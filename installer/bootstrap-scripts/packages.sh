@@ -36,11 +36,11 @@ util_linux="https://www.kernel.org/pub/linux/utils/util-linux/v2.38/util-linux-2
 udev_lfs="https://anduin.linuxfromscratch.org/LFS/udev-lfs-20171102.tar.xz;27cd82f9a61422e186b9d6759ddf1634"
 
 # Some patches required for LFS
-bzip2_documentation_patch="https://www.linuxfromscratch.org/patches/lfs/development/bzip2-1.0.8-install_docs-1.patch;6a5ac7e89b791aae556de0f745916f7f"
-coreutils_internationalization_fixes_patch="https://www.linuxfromscratch.org/patches/lfs/development/coreutils-9.3-i18n-1.patch;3c6340b3ddd62f4acdf8d3caa6fad6b0"
-glibc_fhs_patch="https://www.linuxfromscratch.org/patches/lfs/development/glibc-2.37-fhs-1.patch;9a5997c3452909b1769918c759eff8a2"
-grub_upstream_fixes_patch="https://www.linuxfromscratch.org/patches/lfs/development/grub-2.06-upstream_fixes-1.patch;da388905710bb4cbfbc7bd7346ff9174"
-readline_upstream_fix_patch="https://www.linuxfromscratch.org/patches/lfs/development/readline-8.2-upstream_fix-1.patch;dd1764b84cfca6b677f44978218a75da"
+bzip2_documentation_patch="https://www.linuxfromscratch.org/patches/lfs/11.3/bzip2-1.0.8-install_docs-1.patch;6a5ac7e89b791aae556de0f745916f7f"
+coreutils_internationalization_fixes_patch="https://www.linuxfromscratch.org/patches/lfs/11.3/coreutils-9.1-i18n-1.patch;c1ac7edf095027460716577633da9fc5"
+glibc_fhs_patch="https://www.linuxfromscratch.org/patches/lfs/11.3/glibc-2.37-fhs-1.patch;9a5997c3452909b1769918c759eff8a2"
+grub_upstream_fixes_patch="https://www.linuxfromscratch.org/patches/lfs/11.3/grub-2.06-upstream_fixes-1.patch;da388905710bb4cbfbc7bd7346ff9174"
+readline_upstream_fix_patch="https://www.linuxfromscratch.org/patches/lfs/11.3/readline-8.2-upstream_fix-1.patch;dd1764b84cfca6b677f44978218a75da"
 
 # Some extra packages needed to finish the installation
 stow="https://ftp.gnu.org/gnu/stow/stow-2.3.1.tar.gz;4dfd82b93bb6702d018b1d57e498a74d"
