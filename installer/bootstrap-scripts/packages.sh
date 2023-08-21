@@ -45,4 +45,4 @@ readline_upstream_fix_patch="https://www.linuxfromscratch.org/patches/lfs/11.3/r
 # Some extra packages needed to finish the installation
 stow="https://ftp.gnu.org/gnu/stow/stow-2.3.1.tar.gz;4dfd82b93bb6702d018b1d57e498a74d"
 tzdata="https://www.iana.org/time-zones/repository/releases/tzdata2023c.tar.gz;5aa672bf129b44dd915f8232de38e49a"
-lfs_bootscripts="https://www.linuxfromscratch.org/lfs/downloads/development/lfs-bootscripts-20230101.tar.xz;366c2094cdbdbe1502ceba12ce99816a"
+lfs_bootscripts="https://www.linuxfromscratch.org/lfs/downloads/11.3/lfs-bootscripts-20230101.tar.xz;569217b0b56f98fd267d38d72ee20132"
