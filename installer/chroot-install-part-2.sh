@@ -67,6 +67,11 @@ make
 make install
 
 # FIXME: The kmod package gets rid of the /sbin symlink to /usr/sbin
+
+# Make sure that the backup copies of coreutils are in the PATH
+# variable after coreutils install overwrite
+export PATH="$PATH:/usr/local/bin"
+
 prog_line "Installing the rest of the system packages with birb"
 yes 'n' | birb --install --overwrite man-pages iana-etc vim zlib bzip2 xz zstd file pkg-config ncurses readline m4 bc flex tcl expect dejagnu binutils gmp mpfr mpc isl attr acl libcap shadow gcc sed psmisc gettext bison grep bash libtool gdbm gperf expat inetutils less perl stow
 yes 'n' | birb --install --overwrite xml-parser
