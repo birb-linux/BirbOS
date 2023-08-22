@@ -29,6 +29,7 @@ There are no stage-3 tarballs available and everything is compiled from the grou
     - [GTK+](#gtk)
     - [Firefox](#firefox)
     - [setxkbmap not finding rules](#setxkbmap-not-finding-rules)
+    - [/sbin is not symlinked to /usr/sbin](#missing-sbin-symlink)
 
 ## Disclaimer
 **This is a learning project at most and shouldn't be relied upon as a production ready distro!** If you want similar, but a smoother and way better Linux desktop experience, please use [Gentoo](https://www.gentoo.org/) instead.
@@ -178,3 +179,6 @@ To fix this, point `setxkbmap` to the rules with the following arguments
 ```sh
 setxkbmap -I /usr/share/X11/xkb fi
 ```
+
+### Missing sbin symlink
+Originally /sbin was supposed to be a symlink to /usr/sbin, but the `kmod` package overwrote it during the installation due to the usage of `birb --install --overwrite` options. Due to this, all packages after that have been packaged with the idea of having /sbin as a separate directory. This issue may or may not be fixed in the future.
