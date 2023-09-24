@@ -30,6 +30,7 @@ There are no stage-3 tarballs available and everything is compiled from the grou
     - [Firefox](#firefox)
     - [setxkbmap not finding rules](#setxkbmap-not-finding-rules)
     - [/sbin is not symlinked to /usr/sbin](#missing-sbin-symlink)
+    - [Audio issues with osu lazer](#audio-issues-with-osu-lazer)
 
 ## Disclaimer
 **This is a learning project at most and shouldn't be relied upon as a production ready distro!** If you want similar, but a smoother and way better Linux desktop experience, please use [Gentoo](https://www.gentoo.org/) instead.
@@ -182,3 +183,6 @@ setxkbmap -I /usr/share/X11/xkb fi
 
 ### Missing sbin symlink
 Originally /sbin was supposed to be a symlink to /usr/sbin, but the `kmod` package overwrote it during the installation due to the usage of `birb --install --overwrite` options. Due to this, all packages after that have been packaged with the idea of having /sbin as a separate directory. This issue may or may not be fixed in the future.
+
+### Audio issues with osu lazer
+The osu!lazer appimage can have some issues with audio out-of-the box, because it tries to hijack the entire audio device to itself with ALSA. To fix this issue, you need to reinstall (recompile) the `alsa-plugins` package with the `pulseaudio` package installed, so that it detects pulseaudio and compiles support for it.
