@@ -85,7 +85,7 @@ Here are some of the scripts that are run during the installation:
 - `chroot-install-part-4.sh` The end of the installation. The script compiles and installs the kernel, creates a few last configuration files and cleans up most of the temporary files from the BirbOS installation
 
 ### Kernel configuration
-The default kernel config file that is bundled with the installation scripts is quite barebone and probably doesn't work on any other devices other than the main developer of this distribution. You'll have to figure out the required kernel options yourself with programs like `lspci` etc. on the host distro. There might also be some missing firmware that you'll need to acquire. Refer to [this LFS page](https://www.linuxfromscratch.org/blfs/view/stable/postlfs/firmware.html) for instructions on how to install any missing firmware blobs.
+The default kernel config file that is bundled with the installation scripts is quite barebone and probably doesn't work on any other devices other than the desktop of the main developer of this distribution. You'll have to figure out the required kernel options yourself with programs like `lspci` etc. on the host distro. There might also be some missing firmware that you'll need to acquire. Refer to [this LFS page](https://www.linuxfromscratch.org/blfs/view/stable/postlfs/firmware.html) for instructions on how to install any missing firmware blobs.
 
 The default kernel is configured with this hardware list in mind
 - AMD Ryzen 5 5600G
