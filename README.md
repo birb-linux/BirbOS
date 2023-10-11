@@ -31,6 +31,7 @@ There are no stage-3 tarballs available and everything is compiled from the grou
     - [setxkbmap not finding rules](#setxkbmap-not-finding-rules)
     - [/sbin is not symlinked to /usr/sbin](#missing-sbin-symlink)
     - [Audio issues with osu lazer](#audio-issues-with-osu-lazer)
+    - [The Tor browser doesn't want to launch](#the-tor-browser-does-not-launch)
 
 ## Disclaimer
 **This is a learning project at most and shouldn't be relied upon as a production ready distro!** If you want similar, but a smoother and way better Linux desktop experience, please use [Gentoo](https://www.gentoo.org/) instead.
@@ -186,3 +187,6 @@ Originally /sbin was supposed to be a symlink to /usr/sbin, but the `kmod` packa
 
 ### Audio issues with osu lazer
 The osu!lazer appimage can have some issues with audio out-of-the box, because it tries to hijack the entire audio device to itself with ALSA. To fix this issue, you need to reinstall (recompile) the `alsa-plugins` package with the `pulseaudio` package installed, so that it detects pulseaudio and compiles support for it.
+
+### The Tor browser does not launch
+Enable the `wayland` use flag in `/etc/birb.conf` like so: `export USE_FLAGS="... wayland"` (the three dots being other use flags you might already have enabled) and reinstall gtk+
