@@ -9,10 +9,10 @@ PACKAGE="$gcc"
 . ~/bootstrap-scripts/prepare_sources.sh $PACKAGE
 
 # Extract some packages required to compile gcc
-tar -xf ../mpfr-4.2.0.tar.xz
-mv -v mpfr-4.2.0 mpfr
-tar -xf ../gmp-6.2.1.tar.xz
-mv -v gmp-6.2.1 gmp
+tar -xf ../mpfr-4.2.1.tar.xz
+mv -v mpfr-4.2.1 mpfr
+tar -xf ../gmp-6.3.0.tar.xz
+mv -v gmp-6.3.0 gmp
 tar -xf ../mpc-1.3.1.tar.gz
 mv -v mpc-1.3.1 mpc
 
@@ -28,7 +28,7 @@ mlist=m64,m32
 ../configure                  \
     --target=$LFS_TGT                              \
     --prefix=$LFS/tools                            \
-    --with-glibc-version=2.37                      \
+    --with-glibc-version=2.39                      \
     --with-sysroot=$LFS                            \
     --with-newlib                                  \
     --without-headers                              \

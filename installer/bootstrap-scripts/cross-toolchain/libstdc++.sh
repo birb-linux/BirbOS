@@ -18,7 +18,7 @@ cd       build
     --enable-multilib               \
     --disable-nls                   \
     --disable-libstdcxx-pch         \
-    --with-gxx-include-dir=/tools/$LFS_TGT/include/c++/12.2.0
+    --with-gxx-include-dir=/tools/$LFS_TGT/include/c++/13.2.0
 
 make -j$(nproc)
 

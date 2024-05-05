@@ -27,11 +27,11 @@ export CHROOT_SECTION="temp_tools"
 ~/bootstrap-scripts/chroot-temptools/python3.sh
 ~/bootstrap-scripts/chroot-temptools/texinfo.sh
 ~/bootstrap-scripts/chroot-temptools/util_linux.sh
-~/bootstrap-scripts/chroot-temptools/stow.sh
+~/bootstrap-scripts/chroot-temptools/xstow.sh
 
 # Make sure that stow got installed before continuing
 # Birb won't work properly without it
-file /usr/bin/stow || { echo "Stow seems to be missing... Please make sure that it was compiled correctly and then re-run this script"; exit 1; }
+file /usr/bin/xstow-static || { echo "Stow seems to be missing... Please make sure that it was compiled correctly and then re-run this script"; exit 1; }
 
 prog_line "Do some cleanup! This is to remove unnecessary files and save space"
 
@@ -73,7 +73,7 @@ make install
 export PATH="$PATH:/usr/local/bin"
 
 prog_line "Installing the rest of the system packages with birb"
-yes 'n' | birb --install --overwrite man-pages iana-etc vim zlib bzip2 xz zstd file pkg-config ncurses readline m4 bc flex tcl expect dejagnu binutils gmp mpfr mpc isl attr acl libcap shadow gcc sed psmisc gettext bison grep bash libtool gdbm gperf expat inetutils less perl stow
+yes 'n' | birb --install --overwrite man-pages iana-etc vim zlib bzip2 xz zstd file pkg-config ncurses readline m4 bc flex tcl expect dejagnu binutils gmp mpfr mpc isl attr acl libcap shadow gcc sed psmisc gettext bison grep bash libtool gdbm gperf expat inetutils less perl xstow
 yes 'n' | birb --install --overwrite xml-parser
 yes 'n' | birb --install --overwrite intltool
 yes 'n' | birb --install --overwrite autoconf automake openssl kmod libelf libffi python3 flit-core wheel ninja meson coreutils check diffutils gawk findutils groff popt mandoc icu libtasn1 p11-kit sqlite nspr nss make-ca curl libarchive libuv libxml2 nghttp2 cmake graphite2 wget gzip iproute2 kbd libpipeline make patch tar texinfo eudev man-db procps-ng util-linux e2fsprogs sysklogd sysvinit

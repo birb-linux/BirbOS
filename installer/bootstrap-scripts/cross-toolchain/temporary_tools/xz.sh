@@ -12,7 +12,7 @@ PACKAGE="$xz"
             --host=$LFS_TGT                   \
             --build=$(build-aux/config.guess) \
             --disable-static                  \
-            --docdir=/usr/share/doc/xz-5.4.2
+            --docdir=/usr/share/doc/xz-5.4.6
 
 make -j$(nproc)
 

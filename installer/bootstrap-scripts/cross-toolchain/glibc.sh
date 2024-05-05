@@ -24,7 +24,7 @@ echo "rootsbindir=/usr/sbin" > configparms
       --prefix=/usr                      \
       --host=$LFS_TGT                    \
       --build=$(../scripts/config.guess) \
-      --enable-kernel=3.2                \
+      --enable-kernel=4.19               \
       --with-headers=$LFS/usr/include    \
       --enable-multi-arch                \
       libc_cv_slibdir=/usr/lib
@@ -53,7 +53,7 @@ CXX="$LFS_TGT-g++ -m32" \
       --prefix=/usr                      \
       --host=$LFS_TGT32                  \
       --build=$(../scripts/config.guess) \
-      --enable-kernel=3.2                \
+      --enable-kernel=4.19               \
       --with-headers=$LFS/usr/include    \
       --enable-multi-arch                \
       --libdir=/usr/lib32                \

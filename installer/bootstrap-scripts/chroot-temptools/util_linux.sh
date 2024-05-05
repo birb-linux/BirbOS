@@ -10,19 +10,20 @@ PACKAGE="$util_linux"
 
 mkdir -pv /var/lib/hwclock
 
-./configure ADJTIME_PATH=/var/lib/hwclock/adjtime    \
-            --libdir=/usr/lib    \
-            --docdir=/usr/share/doc/util-linux-2.38.1 \
-            --disable-chfn-chsh  \
-            --disable-login      \
-            --disable-nologin    \
-            --disable-su         \
-            --disable-setpriv    \
-            --disable-runuser    \
-            --disable-pylibmount \
-            --disable-static     \
-            --without-python     \
-            runstatedir=/run
+./configure --libdir=/usr/lib     \
+            --runstatedir=/run    \
+            --disable-chfn-chsh   \
+            --disable-login       \
+            --disable-nologin     \
+            --disable-su          \
+            --disable-setpriv     \
+            --disable-runuser     \
+            --disable-pylibmount  \
+            --disable-static      \
+            --disable-liblastlog2 \
+            --without-python      \
+            ADJTIME_PATH=/var/lib/hwclock/adjtime \
+            --docdir=/usr/share/doc/util-linux-2.40
 
 make -j$(nproc)
 
@@ -32,20 +33,21 @@ make install
 make distclean
 
 CC="gcc -m32" \
-./configure ADJTIME_PATH=/var/lib/hwclock/adjtime    \
-            --libdir=/usr/lib32      \
-            --host=i686-pc-linux-gnu \
-            --docdir=/usr/share/doc/util-linux-2.38.1 \
-            --disable-chfn-chsh  \
-            --disable-login      \
-            --disable-nologin    \
-            --disable-su         \
-            --disable-setpriv    \
-            --disable-runuser    \
-            --disable-pylibmount \
-            --disable-static     \
-            --without-python     \
-            runstatedir=/run
+./configure --host=i686-pc-linux-gnu \
+		--libdir=/usr/lib32      \
+		--runstatedir=/run       \
+		--docdir=/usr/share/doc/util-linux-2.40 \
+		--disable-chfn-chsh   \
+		--disable-login       \
+		--disable-nologin     \
+		--disable-su          \
+		--disable-setpriv     \
+		--disable-runuser     \
+		--disable-pylibmount  \
+		--disable-static      \
+		--disable-liblastlog2 \
+		--without-python      \
+		ADJTIME_PATH=/var/lib/hwclock/adjtime
 
 make -j$(nproc)
 

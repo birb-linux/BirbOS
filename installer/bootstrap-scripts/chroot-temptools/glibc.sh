@@ -20,7 +20,7 @@ echo "rootsbindir=/usr/sbin" > configparms
 
 ../configure --prefix=/usr                            \
              --disable-werror                         \
-             --enable-kernel=3.2                      \
+             --enable-kernel=4.19                     \
              --enable-stack-protector=strong          \
              --with-headers=/usr/include              \
              --enable-multi-arch                      \
@@ -138,7 +138,7 @@ CC="gcc -m32" CXX="g++ -m32" \
       --prefix=/usr                      \
       --host=i686-pc-linux-gnu           \
       --build=$(../scripts/config.guess) \
-      --enable-kernel=3.2                \
+      --enable-kernel=4.19               \
       --with-headers=/usr/include        \
       --enable-multi-arch                \
       --libdir=/usr/lib32                \

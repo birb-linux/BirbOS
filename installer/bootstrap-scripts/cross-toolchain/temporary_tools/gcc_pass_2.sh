@@ -9,10 +9,10 @@ PACKAGE="$gcc"
 . ~/bootstrap-scripts/prepare_sources.sh $PACKAGE
 
 # Extract some packages that aren't yet compiled into the system
-tar -xf ../mpfr-4.2.0.tar.xz
-mv -v mpfr-4.2.0 mpfr
-tar -xf ../gmp-6.2.1.tar.xz
-mv -v gmp-6.2.1 gmp
+tar -xf ../mpfr-4.2.1.tar.xz
+mv -v mpfr-4.2.1 mpfr
+tar -xf ../gmp-6.3.0.tar.xz
+mv -v gmp-6.3.0 gmp
 tar -xf ../mpc-1.3.1.tar.gz
 mv -v mpc-1.3.1 mpc
 
@@ -36,13 +36,12 @@ mlist=m64,m32
     --with-build-sysroot=$LFS                      \
     --enable-default-pie                           \
     --enable-default-ssp                           \
-    --enable-initfini-array                        \
     --disable-nls                                  \
     --enable-multilib --with-multilib-list=$mlist  \
-    --disable-decimal-float                        \
     --disable-libatomic                            \
     --disable-libgomp                              \
     --disable-libquadmath                          \
+    --disable-libsanitizer                         \
     --disable-libssp                               \
     --disable-libvtv                               \
     --enable-languages=c,c++
