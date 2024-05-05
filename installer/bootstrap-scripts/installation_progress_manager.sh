@@ -8,9 +8,9 @@
 PROGRESS_FILE="$HOME/BirbOS_Progress.txt"
 
 # Make sure that the file exists
-touch $PROGRESS_FILE
+touch "$PROGRESS_FILE"
 
 case $1 in
-	add) echo "$2" >> $PROGRESS_FILE ;;
-	check) grep -x "$2" $PROGRESS_FILE ;;
+	add) echo "$2" >> "$PROGRESS_FILE" ;;
+	check) grep -x "$2" "$PROGRESS_FILE" ;;
 esac

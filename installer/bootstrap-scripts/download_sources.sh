@@ -5,17 +5,17 @@ ERRORS=""
 
 download()
 {
-	URL="$(echo $1 | cut -d';' -f1)"
-	MD5_SUM="$(echo $1 | cut -d';' -f2)"
+	URL="$(echo "$1" | cut -d';' -f1)"
+	MD5_SUM="$(echo "$1" | cut -d';' -f2)"
 
-	FILE_NAME="$(basename $URL)"
+	FILE_NAME="$(basename "$URL")"
 
 	# Check for existing files
-	[ -f "$LFS_SRC_PREFIX/$FILE_NAME" ] && { [ "$(md5sum $LFS_SRC_PREFIX/$FILE_NAME | cut -d' ' -f1)" == "$MD5_SUM" ] && echo "$FILE_NAME found" && return || rm -fv "$LFS_SRC_PREFIX/$FILE_NAME"; }
+	[ -f "$LFS_SRC_PREFIX/$FILE_NAME" ] && { [ "$(md5sum "$LFS_SRC_PREFIX/$FILE_NAME" | cut -d' ' -f1)" == "$MD5_SUM" ] && echo "$FILE_NAME found" && return || rm -fv "$LFS_SRC_PREFIX/$FILE_NAME"; }
 
-	wget --directory-prefix=$LFS_SRC_PREFIX $URL
+	wget --directory-prefix="$LFS_SRC_PREFIX" "$URL"
 
-	DOWNLOAD_MD5_SUM="$(md5sum $LFS_SRC_PREFIX/$FILE_NAME | cut -d' ' -f1)"
+	DOWNLOAD_MD5_SUM="$(md5sum "$LFS_SRC_PREFIX/$FILE_NAME" | cut -d' ' -f1)"
 	[ "$DOWNLOAD_MD5_SUM" != "$MD5_SUM" ] && echo "MD5 mismatch with $FILE_NAME" && ERRORS="YES" && exit 1
 }
 

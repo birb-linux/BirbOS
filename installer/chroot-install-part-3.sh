@@ -10,7 +10,7 @@
 
 prog_line()
 {
-	printf "> $1\n"
+	printf "> %s\n" "$1"
 }
 
 # Source the configuration file
@@ -18,10 +18,10 @@ cd /
 source /birb_config
 
 prog_line "Install LFS-Bootscripts"
-cd /sources
+cd /sources || exit 1
 LFS_BOOTSCRIPTS="lfs-bootscripts-20230101"
 tar -xvf $LFS_BOOTSCRIPTS.tar.xz
-cd $LFS_BOOTSCRIPTS
+cd $LFS_BOOTSCRIPTS || exit 1
 make install
 cd ..
 rm -r $LFS_BOOTSCRIPTS
@@ -327,22 +327,22 @@ prog_line "Install git for birb"
 yes 'n' | git
 
 prog_line "Install a bootscript that makes the random entropy Pools less predictable during startup"
-cd /tmp
+cd /tmp || exit 1
 BOOTSCRIPT_FILE_PATH="blfs-bootscripts-20230101"
 wget https://anduin.linuxfromscratch.org/BLFS/blfs-bootscripts/${BOOTSCRIPT_FILE_PATH}.tar.xz
 tar -xf $BOOTSCRIPT_FILE_PATH.tar.xz
-cd /tmp/$BOOTSCRIPT_FILE_PATH
+cd /tmp/$BOOTSCRIPT_FILE_PATH || exit 1
 make install-random
-cd /tmp
+cd /tmp || exit 1
 rm -rf $BOOTSCRIPT_FILE_PATH $BOOTSCRIPT_FILE_PATH.tar.xz
 
 prog_line "Preparing for kernel configuration"
 mkdir -pv /usr/src /etc/modprobe.d
-cd /usr/src
+cd /usr/src || exit 1
 #[ -d /usr/src/linux-* ] && rm -r /usr/src/linux-*
 tar -xf /sources/linux-*
 ln -sf /usr/src/linux-* /usr/src/linux
-cd /usr/src/linux
+cd /usr/src/linux || exit 1
 make mrproper
 cp -f /root/misc_installation_files/kernel_config /usr/src/linux/.config
 

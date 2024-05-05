@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Setup and prepare the birb package manager for use.
 
@@ -34,7 +34,7 @@ touch $LIB_DIR/nest
 if [ -d $REPO_DIR ]
 then
 	prog_line "Updating the existing package repository"
-	cd $REPO_DIR
+	cd "$REPO_DIR" || exit 1
 	git reset --hard
 	git config pull.rebase true
 	git fetch
@@ -47,7 +47,7 @@ fi
 if [ -d $BIRB_SRC_DIR ]
 then
 	prog_line "Updating the existing birb source files"
-	cd $BIRB_SRC_DIR
+	cd "$BIRB_SRC_DIR" || exit 1
 	git reset --hard
 	git config pull.rebase true
 	git fetch

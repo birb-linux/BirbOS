@@ -8,15 +8,15 @@
 
 prog_line()
 {
-	printf "> $1\n"
+	printf "> %s\n" "$1"
 }
 
 prog_line "Loading installation variables"
 source /birb_config
 
 prog_line "Compiling the kernel"
-cd /usr/src/linux
-make -j$(nproc)
+cd /usr/src/linux || exit 1
+make -j "$(nproc)"
 
 #prog_line "Installing kernel modules"
 #make modules_install
@@ -26,8 +26,8 @@ mount $BOOT_PARTITION /boot
 
 prog_line "Installing the BirbOS kernel files to /boot"
 KERNEL_VERSION="$(file /usr/src/linux | awk '{print $5}' | xargs basename | cut -d'-' -f2)"
-cp -iv /usr/src/linux/arch/x86/boot/bzImage /boot/vmlinuz-${KERNEL_VERSION}-birbos
-cp -iv /usr/src/linux/System.map /boot/System.map-${KERNEL_VERSION}
+cp -iv /usr/src/linux/arch/x86/boot/bzImage "/boot/vmlinuz-${KERNEL_VERSION}-birbos"
+cp -iv /usr/src/linux/System.map "/boot/System.map-${KERNEL_VERSION}"
 
 prog_line "Finalizing the base installation"
 cat > /etc/lsb-release << "EOF"

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # https://www.linuxfromscratch.org/~thomas/multilib/chapter07/Python.html
 
 # This package is known to fail at one part because of missing dependencies

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # https://www.linuxfromscratch.org/~thomas/multilib/chapter06/gcc-pass2.html
 set -e
 ~/bootstrap-scripts/installation_progress_manager.sh check $0 && exit 0

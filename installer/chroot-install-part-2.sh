@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Continuation script for the chroot-install.sh script
 # The script is split into two parts, because the bash shell
@@ -7,7 +7,7 @@
 
 prog_line()
 {
-	printf "> $1\n"
+	printf "> %s\n" "$1"
 }
 
 cd /
@@ -61,7 +61,7 @@ touch /lib/udev/rules.d/.birb_symlink_lock
 
 prog_line "Compiling and installing birb ♪┏(・o･)┛♪"
 BIRB_SRC_ROOT="/var/cache/distfiles/birb"
-cd $BIRB_SRC_ROOT
+cd "$BIRB_SRC_ROOT" || exit 1
 make clean
 make
 make install
@@ -94,7 +94,7 @@ yes | birb --install --overwrite graphite2
 [ ! -L /sbin/ldconfig ] && ln -srfv /usr/sbin/ldconfig /sbin/ldconfig
 
 prog_line "Installing some custom udev rules meant for lfs installations"
-cd /sources
+cd /sources || exit 1
 tar -xf udev-lfs-20171102.tar.xz
 make -f udev-lfs-20171102/Makefile.lfs install
 rm -r udev-lfs-20171102

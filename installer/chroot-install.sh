@@ -8,7 +8,7 @@
 
 prog_line()
 {
-	printf "> $1\n"
+	printf "> %s\n" "$1"
 }
 
 prog_line "Creating the rest of the Linux directory structure"

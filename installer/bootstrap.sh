@@ -1,6 +1,6 @@
 #!/bin/bash
 
-[ "$2" == "DEV_MODE" ] && DEV_MODE="enabled" && echo "Developer mode is enabled! All warnings will be skipped. Please be careful..." && read -p "Hit ENTER to continue ʕ •ᴥ•ʔ"
+[ "$2" == "DEV_MODE" ] && DEV_MODE="enabled" && echo "Developer mode is enabled! All warnings will be skipped. Please be careful..." && read -r -p "Hit ENTER to continue ʕ •ᴥ•ʔ"
 
 source ./installer-funcs.sh
 
@@ -13,7 +13,7 @@ source ./installer-funcs.sh
 [ -f "$1" ] || { echo "File [$1] not found" ; exit 1; }
 
 # Source all of the variables from the config file
-. $1
+. "$1"
 
 # Make sure that all of the required lines are in the config file
 prog_line "Validating the config file"
@@ -40,7 +40,7 @@ fi
 # Check for required programs
 find_program()
 {
-	which $1 &>/dev/null || { echo "$1 not installed"; MISSING_PROGRAMS="$MISSING_PROGRAMS;$1"; }
+	which "$1" &>/dev/null || { echo "$1 not installed"; MISSING_PROGRAMS="$MISSING_PROGRAMS;$1"; }
 }
 find_program wget
 find_program git
@@ -51,12 +51,12 @@ find_program sudo
 [ -n "$MISSING_PROGRAMS" ] && echo "There were missing programs! Please install them before continuing with the installation..." && exit 1
 
 prog_line "Preparing the filesystem for installation"
-if [ -z $DEV_MODE ]
+if [ -z "$DEV_MODE" ]
 then
 	echo -e "\n!!! WARNING !!!"
 	echo "If you continue, the selected partition [$TARGET_PARTITION] will be totally wiped and overwritten!"
 	echo -e "You have been warned.\n"
-	read -p "Please write 'i have read the warning' to continue with the installation: " WARNING_READ
+	read -r -p "Please write 'i have read the warning' to continue with the installation: " WARNING_READ
 	if [ "$WARNING_READ" != "i have read the warning" ]
 	then
 		echo "Installation cancelled!"
@@ -68,7 +68,7 @@ then
 fi
 
 prog_line "Formatting $TARGET_PARTITION with ext4"
-mkfs.ext4 -L BIRBOS $TARGET_PARTITION
+mkfs.ext4 -L BIRBOS "$TARGET_PARTITION"
 
 prog_line "Mounting the BirbOS partition"
 export LFS=/mnt/lfs
@@ -81,13 +81,13 @@ then
 elif [ -z "$LFS_MOUNTED_PARTITION" ]
 then
 	mkdir -pv $LFS
-	mount -v -t ext4 $TARGET_PARTITION $LFS
+	mount -v -t ext4 "$TARGET_PARTITION" $LFS
 else
 	echo "There's something already mounted to $LFS that is not $TARGET_PARTITION! Please unmount it and re-run this script!"
 fi
 
 prog_line "Copy the config file over"
-cp -v $1 $LFS/birb_config
+cp -v "$1" $LFS/birb_config
 chown -v root:root $LFS/birb_config
 
 prog_line "Preparing toolchain source files"

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # This script should be run after bootstrap.sh has finished
 # and most of the temporary cross compiling toolchain has been
@@ -46,7 +46,7 @@ mount -vt sysfs sysfs $LFS/sys
 mount -vt tmpfs tmpfs $LFS/run
 
 if [ -h $LFS/dev/shm ]; then
-  mkdir -pv $LFS/$(readlink $LFS/dev/shm)
+  mkdir -pv "$LFS/$(readlink $LFS/dev/shm)"
 else
   mount -t tmpfs -o nosuid,nodev tmpfs $LFS/dev/shm
 fi
