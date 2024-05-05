@@ -163,7 +163,7 @@ Extracting deb and rpm files can work in some cases, but in no way is supported 
 
 ## Known issues
 ### GTK+
-Installing GTK+ for the first time will can fail due to some missing .gir files. You can get around this issue by reinstalling the following packages before installing GTK+
+Installing GTK+ for the first time might fail due to some missing .gir files. You can get around this issue by reinstalling the following packages before installing GTK+
 - harfbuzz
 - gdk-pixbuf
 
