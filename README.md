@@ -96,7 +96,7 @@ The default kernel is configured with this hardware list in mind
 - Family 17h/19h HD Audio Controller
 - No WiFi / Bluetooth
 
-If your hardware configuration is something similar to what is listed above, you might have some luck with minimal editing using the provided kernel configuration. The kernel config has most of the Intel CPU stuff and AMD GPU options disabled.
+If your hardware configuration is something similar to what is listed above, you might have some luck with minimal editing using the provided kernel configuration. The kernel config has most of the Intel CPU stuff and AMD GPU options disabled. Also support for SATA-drives has been disabled.
 
 ### Booting
 The scripts only copy the kernel files to /boot and do nothing else. The bootloader needs to be set up manually by the user. This might involve creating a custom menuentry to GRUB etc. Make sure to set the root partition in the menuentry appropriately.
