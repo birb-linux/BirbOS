@@ -40,7 +40,7 @@ fi
 # Check for required programs
 find_program()
 {
-	which $1 &>/dev/null || { echo "$1 not installed"; MISSING_PROGRAMS="$MISSING_PROGRAMS;$1"; }
+	command -v "$1" &>/dev/null || { echo "$1 not installed"; MISSING_PROGRAMS="$MISSING_PROGRAMS;$1"; }
 }
 find_program wget
 find_program git
