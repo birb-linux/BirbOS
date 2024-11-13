@@ -34,15 +34,15 @@ then
 	echo "$VER_ERRORS"
 fi
 
-# Check for required programs
-find_program()
+# Check if a program is installed or not
+is_installed()
 {
 	command -v "$1" &>/dev/null || { echo "$1 not installed"; MISSING_PROGRAMS="$MISSING_PROGRAMS;$1"; }
 }
 
 for i in wget git curl mkfs.ext4 sudo
 do
-	find_program "$i"
+	is_installed "$i"
 done
 
 [ -n "$MISSING_PROGRAMS" ] && echo "There were missing programs! Please install them before continuing with the installation..." && exit 1
