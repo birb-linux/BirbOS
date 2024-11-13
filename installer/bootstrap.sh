@@ -28,7 +28,7 @@ check_setting DNS_SERVER
 check_setting TIME_ZONE
 
 prog_line "Running a version check"
-if ./version-check | grep '^ERROR'
+if ./version-check.sh | grep '^ERROR'
 then
 	echo "Can't continue with the setup!"
 	echo "$VER_ERRORS"
