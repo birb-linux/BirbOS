@@ -3,11 +3,11 @@ set -e
 ~/bootstrap-scripts/installation_progress_manager.sh check $0 && exit 0
 source ~/bootstrap-scripts/packages.sh
 
-PACKAGE="$stow"
+PACKAGE="$xstow"
 
 . ~/bootstrap-scripts/prepare_sources.sh $PACKAGE
 
-./configure --prefix=/usr
+./configure --prefix=/usr --enable-static
 
 make -j$(nproc)
 
