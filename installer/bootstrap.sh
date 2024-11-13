@@ -39,11 +39,11 @@ find_program()
 {
 	command -v "$1" &>/dev/null || { echo "$1 not installed"; MISSING_PROGRAMS="$MISSING_PROGRAMS;$1"; }
 }
-find_program wget
-find_program git
-find_program curl
-find_program mkfs.ext4
-find_program sudo
+
+for i in wget git curl mkfs.ext4 sudo
+do
+	find_program "$i"
+done
 
 [ -n "$MISSING_PROGRAMS" ] && echo "There were missing programs! Please install them before continuing with the installation..." && exit 1
 
