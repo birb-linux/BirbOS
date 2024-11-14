@@ -97,7 +97,7 @@ prog_line "Creating the Linux directory layout"
 mkdir -pv $LFS/{etc,var} $LFS/usr/{bin,lib,sbin}
 
 for i in bin lib sbin; do
-  ln -sv usr/$i $LFS/$i
+  ln -svf usr/$i $LFS/$i
 done
 
 # We'll assume that the system is 64-bit
@@ -105,7 +105,7 @@ mkdir -pv $LFS/lib64
 
 # 32-bit stuff
 mkdir -pv $LFS/usr/lib32
-ln -sv usr/lib32 $LFS/lib32
+ln -svf usr/lib32 $LFS/lib32
 
 # Create the temporary tools directory for cross-compiling
 mkdir -pv $LFS/tools
