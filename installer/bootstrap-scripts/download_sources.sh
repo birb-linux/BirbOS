@@ -21,6 +21,7 @@ download()
 		if [ "$(md5sum "$LFS_SRC_PREFIX/$FILE_NAME" | cut -d' ' -f1)" == "$MD5_SUM" ]
 		then
 			echo "$FILE_NAME found"
+			return
 		else
 			rm -fv "$LFS_SRC_PREFIX/$FILE_NAME";
 		fi
