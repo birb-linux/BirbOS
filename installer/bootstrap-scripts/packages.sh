@@ -46,4 +46,4 @@ glibc_fhs_patch="https://www.linuxfromscratch.org/patches/lfs/development/glibc-
 # Some extra packages needed to finish the installation
 xstow="https://github.com/majorkingleo/xstow/releases/download/1.1.1/xstow-1.1.1.tar.gz;2fedf18c5f8bac34a160cc4c2ac0e423"
 tzdata="https://www.iana.org/time-zones/repository/releases/tzdata2024b.tar.gz;e1d010b46844502f12dcff298c1b7154"
-lfs_bootscripts="https://www.linuxfromscratch.org/lfs/downloads/development/lfs-bootscripts-20240825.tar.xz;2afe267b96f230817f9e546c0f1d7c7b"
+lfs_bootscripts="https://www.linuxfromscratch.org/lfs/downloads/development/lfs-bootscripts-20240825.tar.xz;ff3052e5ffd915259fd33084e5670194"
