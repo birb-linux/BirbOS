@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # This script should be run after bootstrap.sh has finished
 # and most of the temporary cross compiling toolchain has been
@@ -16,7 +16,6 @@ prog_line "Changing $LFS file permissions from the LFS user to root"
 chown -R root:root $LFS/{usr,lib,var,etc,bin,sbin,tools}
 chown -R root:root $LFS/lib64
 chown -R root:root $LFS/lib32
-chown -R root:root $LFS/libx32
 
 prog_line "Copying the chroot-install.sh script to $LFS"
 cp -v ./chroot-install.sh $LFS/
@@ -46,7 +45,7 @@ mount -vt sysfs sysfs $LFS/sys
 mount -vt tmpfs tmpfs $LFS/run
 
 if [ -h $LFS/dev/shm ]; then
-  mkdir -pv $LFS/$(readlink $LFS/dev/shm)
+  mkdir -pv "$LFS/$(readlink $LFS/dev/shm)"
 else
   mount -t tmpfs -o nosuid,nodev tmpfs $LFS/dev/shm
 fi
