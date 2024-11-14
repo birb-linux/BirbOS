@@ -14,7 +14,7 @@
 ./bootstrap-scripts/cross-toolchain/glibc.sh
 ./bootstrap-scripts/cross-toolchain/libstdc++.sh
 
-# Corss compile temporary tools
+# Cross compile temporary tools
 ./bootstrap-scripts/cross-toolchain/temporary_tools/m4.sh
 ./bootstrap-scripts/cross-toolchain/temporary_tools/ncurses.sh
 ./bootstrap-scripts/cross-toolchain/temporary_tools/bash.sh
